@@ -1,66 +1,31 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, request, jsonify
 from models.casa_model import Casa
-from models.locacion_model import Locacion
 
-bp = Blueprint('casas', __name__, url_prefix='/casas')
+casa_bp = Blueprint('casa_bp', __name__)
 
-casa_model = Casa()
-locacion_model = Locacion()
+@casa_bp.route('/casas/buscar', methods=['GET'])
+def buscar_casas():
 
-@bp.route('/')
-def index():
-    """Lista todas las casas"""
-    casas = casa_model.obtener_todas()
-    locaciones = locacion_model.obtener_todas()
-    return render_template('crud/casas.html', casas=casas, locaciones=locaciones)
+    ubicacion = request.args.get('ubicacion')
+    precio_min = request.args.get('precioMin', type=float)
+    precio_max = request.args.get('precioMax', type=float)
+    recamaras = request.args.get('recamaras', type=int)
+    baños = request.args.get('baños', type=int)
 
-@bp.route('/crear', methods=['POST'])
-def crear():
-    """Crea una nueva casa"""
-    try:
-        casa_model.crear(
-            id_locacion=request.form.get('id_locacion'),
-            latitud=request.form.get('latitud'),
-            longitud=request.form.get('longitud'),
-            codigo_postal=request.form.get('codigo_postal'),
-            costo=request.form.get('costo'),
-            recamaras=request.form.get('recamaras'),
-            banos=request.form.get('banos'),
-            estatus_venta=request.form.get('estatus_venta'),
-            fotos=request.form.get('fotos')
-        )
-        flash('Casa creada exitosamente', 'success')
-    except Exception as e:
-        flash(f'Error al crear casa: {str(e)}', 'error')
-    return redirect(url_for('casas.index'))
+    user_lat = request.args.get('user_lat', type=float)
+    user_lon = request.args.get('user_lon', type=float)
+    rango_km = request.args.get('rango_km', type=float)
 
-@bp.route('/editar/<int:id>', methods=['POST'])
-def editar(id):
-    """Edita una casa existente"""
-    try:
-        casa_model.actualizar(
-            id_casa=id,
-            id_locacion=request.form.get('id_locacion'),
-            latitud=request.form.get('latitud'),
-            longitud=request.form.get('longitud'),
-            codigo_postal=request.form.get('codigo_postal'),
-            costo=request.form.get('costo'),
-            recamaras=request.form.get('recamaras'),
-            banos=request.form.get('banos'),
-            estatus_venta=request.form.get('estatus_venta'),
-            fotos=request.form.get('fotos')
-        )
-        flash('Casa actualizada exitosamente', 'success')
-    except Exception as e:
-        flash(f'Error al actualizar casa: {str(e)}', 'error')
-    return redirect(url_for('casas.index'))
+    casa = Casa()
+    resultados = casa.buscar_completo(
+        ubicacion=ubicacion,
+        precio_min=precio_min,
+        precio_max=precio_max,
+        recamaras=recamaras,
+        baños=baños,
+        user_lat=user_lat,
+        user_lon=user_lon,
+        rango_km=rango_km
+    )
 
-@bp.route('/eliminar/<int:id>', methods=['POST'])
-def eliminar(id):
-    """Elimina una casa"""
-    try:
-        casa_model.eliminar(id)
-        flash('Casa eliminada exitosamente', 'success')
-    except Exception as e:
-        flash(f'Error al eliminar casa: {str(e)}', 'error')
-    return redirect(url_for('casas.index'))
+    return jsonify(resultados)
