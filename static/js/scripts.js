@@ -96,3 +96,51 @@ function mostrarNotificacion(mensaje, tipo = 'success') {
         }, 300);
     }, 3000);
 }
+
+// Búsqueda de casas
+document.addEventListener('DOMContentLoaded', function() {
+    const formBusqueda = document.getElementById('formBusqueda');
+    
+    if (formBusqueda) {
+        formBusqueda.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(formBusqueda);
+            const params = new URLSearchParams(formData).toString();
+            
+            try {
+                const response = await fetch(`/api/buscar-casas?${params}`);
+                const casas = await response.json();
+                
+                mostrarResultados(casas);
+            } catch (error) {
+                console.error('Error en búsqueda:', error);
+                mostrarNotificacion('Error al buscar propiedades', 'error');
+            }
+        });
+    }
+});
+
+function mostrarResultados(casas) {
+    const contenedor = document.getElementById('listaResultados');
+    
+    if (casas.length === 0) {
+        contenedor.innerHTML = '<p>No se encontraron propiedades con estos criterios.</p>';
+        return;
+    }
+    
+    let html = '';
+    casas.forEach(casa => {
+        html += `
+            <div class="resultado-item" style="background: white; padding: 15px; margin-bottom: 15px; border-radius: 5px;">
+                <h4>${casa.locacion}</h4>
+                <p><strong>Precio:</strong> $${parseFloat(casa.costo).toLocaleString('es-MX')}</p>
+                <p><strong>Recámaras:</strong> ${casa.recamaras} | <strong>Baños:</strong> ${casa.baños}</p>
+                <p><strong>C.P.:</strong> ${casa.codigo_postal}</p>
+                <p><strong>Estatus:</strong> ${casa.estatus_venta}</p>
+            </div>
+        `;
+    });
+    
+    contenedor.innerHTML = html;
+}

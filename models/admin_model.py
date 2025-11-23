@@ -11,6 +11,10 @@ class Admin(BaseModel):
         sql = f"SELECT * FROM {self.table_name} WHERE id_admin = %s"
         return self.query(sql, (id_admin,), fetchone=True)
 
+    def obtener_por_correo(self, correo):
+        sql = f"SELECT * FROM {self.table_name} WHERE correo = %s"
+        return self.query(sql, (correo,), fetchone=True)
+
     def crear(self, nombre, correo, contraseña):
         sql = f"""
             INSERT INTO {self.table_name} (nombre, correo, contraseña)

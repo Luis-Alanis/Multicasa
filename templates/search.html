@@ -23,7 +23,7 @@
                     <h2>BUSCAR PROPIEDADES</h2>
                     <h3>Refina tu búsqueda</h3>
 
-                    <form class="search-box search-page">
+                    <form class="search-box search-page" id="formBusqueda">
                         <div class="form-group">
                             <label>Ciudad / Estado / C.P.</label>
                             <input type="text" name="ubicacion">
@@ -72,7 +72,9 @@
 
                     <div id="resultados" style="margin-top:30px;">
                         <h3>Resultados</h3>
-                        <p>Ingresa criterios y presiona Buscar.</p>
+                        <div id="listaResultados">
+                            <p>Ingresa criterios y presiona Buscar.</p>
+                        </div>
                     </div>
                 </div>
             </div>
