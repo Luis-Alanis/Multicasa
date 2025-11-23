@@ -127,10 +127,29 @@ body {
     overflow: hidden;
 }
 
-.hero img {
+/* Slider */
+.hero-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-slider .slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.hero-slider .slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
+}
+
+.hero-slider .slide.active {
+    opacity: 1;
 }
 
 /* User Menu */
