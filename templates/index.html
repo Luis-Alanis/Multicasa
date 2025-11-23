@@ -115,7 +115,7 @@
                 </ul>
 
                 <!-- Search Box -->
-                <form class="search-box search-page">
+                <form class="search-box search-page" action="/casas/buscar" method="get">
                 <input type="hidden" id="user_lat" name="user_lat">
                 <input type="hidden" id="user_lon" name="user_lon">
                     <div class="form-group">
@@ -161,7 +161,7 @@
                             <option>3+</option>
                         </select>
                     </div>
-                    <button class="search-btn" type="button">Buscar</button>
+                    <button id="btnBuscar" class="search-btn" type="button">Buscar</button>
                 </form>
 
                 <!-- Info Boxes -->
