@@ -13,7 +13,7 @@
         <div class="header">
             <div class="logo-section">
                 <div class="logo-circle">
-                    <img src="../images/logotipo.png" alt="Logo MultiCasa" class="logo-icon">
+                    <img src="{{ url_for('static', filename='images/logotipo.png') }}" alt="Logo MultiCasa" class="logo-icon">
                 </div>
                 <div class="logo-text">
                     <h1>BIENES RAICES MULTICASA</h1>
@@ -29,11 +29,11 @@
 
         <!-- Navigation -->
         <nav class="nav">
-            <a href="index.html">Inicio</a>
-            <a href="index.html#compania">La Compañía</a>
-            <a href="index.html#servicios">Servicios</a>
-            <a href="index.html#requisitos">Requisitos</a>
-            <a href="contactos.html">Contactos</a>
+            <a href="{{ url_for('index') }}">Inicio</a>
+            <a href="{{ url_for('index') }}#compania">La Compañía</a>
+            <a href="{{ url_for('index') }}#servicios">Servicios</a>
+            <a href="{{ url_for('index') }}#requisitos">Requisitos</a>
+            <a href="{{ url_for('contacto_bp.contactos') }}">Contactos</a>
         </nav>
 
         <!-- Main Content -->
@@ -141,7 +141,7 @@
                     <li><a href="#">VENTA</a></li>
                     <li><a href="#">MUDANZAS</a></li>
                     <li><a href="#">SEGUROS</a></li>
-                    <li><a href="contactos.html">CONTACTOS</a></li>
+                    <li><a href="{{ url_for('contacto_bp.contactos') }}">CONTACTOS</a></li>
                 </ul>
 
                 <!-- Info Boxes -->
@@ -178,22 +178,18 @@
         <footer class="footer">
             <div class="footer-logo">
                 <div class="logo-circle footer-size">
-                    <img src="../images/logotipo.png" alt="Logo MultiCasa" class="logo-icon">
+                    <img src="{{ url_for('static', filename='images/logotipo.png') }}" alt="Logo MultiCasa" class="logo-icon">
                 </div>
                 <div class="footer-nav">
-                    <a href="index.html">Inicio</a>
+                    <a href="{{ url_for('index') }}">Inicio</a>
                     <span class="bullet">:</span>
-                    <a href="#">Compra</a>
+                    <a href="{{ url_for('index') }}#compania">La Compañía</a>
                     <span class="bullet">:</span>
-                    <a href="#">Construir</a>
+                    <a href="{{ url_for('index') }}#servicios">Servicios</a>
                     <span class="bullet">:</span>
-                    <a href="#">Venta</a>
+                    <a href="{{ url_for('index') }}#requisitos">Requisitos</a>
                     <span class="bullet">:</span>
-                    <a href="#">Mudanzas</a>
-                    <span class="bullet">:</span>
-                    <a href="#">Seguros</a>
-                    <span class="bullet">:</span>
-                    <a href="contactos.html">Contactos</a>
+                    <a href="{{ url_for('contacto_bp.contactos') }}">Contactos</a>
                 </div>
             </div>
             <div class="footer-info">

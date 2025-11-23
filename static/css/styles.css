@@ -183,6 +183,14 @@ body {
     background: rgba(26, 82, 117, 1);
 }
 
+.user-search-btn {
+    background: rgba(26, 82, 117, 0.9) !important;
+}
+
+.user-search-btn:hover {
+    background: rgba(26, 82, 117, 1) !important;
+}
+
 /* Main Content */
 .main-content {
     display: flex;
@@ -778,10 +786,102 @@ body {
     color: white;
 }
 
-@media (max-width: 768px) {
-    .notificacion {
-        right: 10px;
-        left: 10px;
-        text-align: center;
+/* Dashboard Styles */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.dashboard-card {
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.dashboard-card h3 {
+    color: #134563;
+    font-size: 18px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dashboard-card h3 i {
+    color: #2a9fd6;
+    font-size: 20px;
+}
+
+.dashboard-card canvas {
+    max-height: 300px;
+}
+
+.stats-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #2a9fd6;
+}
+
+.stat-label {
+    font-weight: bold;
+    color: #134563;
+    font-size: 14px;
+}
+
+.stat-value {
+    font-size: 20px;
+    font-weight: bold;
+    color: #2a9fd6;
+}
+
+.stat-value.stat-venta {
+    color: #28a745;
+}
+
+.stat-value.stat-vendida {
+    color: #dc3545;
+}
+
+/* Botón de reporte especial */
+.tab-btn[data-action="generar-reporte"] {
+    background: linear-gradient(to bottom, #28a745, #218838);
+    color: white;
+    border-radius: 5px;
+    margin-left: auto;
+    padding: 12px 20px;
+    transition: all 0.3s;
+}
+
+.tab-btn[data-action="generar-reporte"]:hover {
+    background: linear-gradient(to bottom, #218838, #1e7e34);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+}
+
+.tab-btn[data-action="generar-reporte"] i {
+    margin-right: 8px;
+}
+
+@media (max-width: 1024px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
     }
+}
+
+.notificacion-info {
+    background: linear-gradient(to right, #2a9fd6, #1a8cc4);
+    color: white;
 }

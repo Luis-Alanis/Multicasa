@@ -1,0 +1,478 @@
+.admin-container {
+    min-height: 100vh;
+    background: #f5f7fa;
+}
+
+.admin-header {
+    background: linear-gradient(to right, #1a5275, #134563);
+    color: white;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.admin-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.admin-logo img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.admin-logo h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.admin-user {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.admin-user i {
+    font-size: 32px;
+}
+
+.btn-logout {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.btn-logout:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+.admin-tabs {
+    background: white;
+    padding: 0 40px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    gap: 10px;
+}
+
+.tab-btn {
+    background: transparent;
+    border: none;
+    padding: 15px 25px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #666;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+}
+
+.tab-btn:hover {
+    color: #2a9fd6;
+}
+
+.tab-btn.active {
+    color: #2a9fd6;
+    border-bottom-color: #2a9fd6;
+}
+
+.tab-btn i {
+    margin-right: 8px;
+}
+
+.admin-content {
+    padding: 40px;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.content-header h2 {
+    color: #134563;
+    font-size: 28px;
+    margin: 0;
+}
+
+.content-header h2 i {
+    margin-right: 10px;
+    color: #2a9fd6;
+}
+
+.btn-primary {
+    background: linear-gradient(to bottom, #2a9fd6, #1a8cc4);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    transition: transform 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(42, 159, 214, 0.3);
+}
+
+.btn-secondary {
+    background: #95a5a6;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.btn-secondary:hover {
+    background: #7f8c8d;
+}
+
+.table-container {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: linear-gradient(to right, #1a5275, #134563);
+    color: white;
+}
+
+th {
+    padding: 15px;
+    text-align: left;
+    font-weight: bold;
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+tbody tr:hover {
+    background: #f8f9fa;
+}
+
+.btn-action {
+    background: transparent;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.btn-edit {
+    color: #2a9fd6;
+}
+
+.btn-edit:hover {
+    background: rgba(42, 159, 214, 0.1);
+}
+
+.btn-delete {
+    color: #e74c3c;
+}
+
+.btn-delete:hover {
+    background: rgba(231, 76, 60, 0.1);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideDown 0.3s;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    padding: 20px 30px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: #134563;
+}
+
+.close-modal {
+    background: transparent;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #999;
+}
+
+.close-modal:hover {
+    color: #333;
+}
+
+.modal form {
+    padding: 30px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.modal-footer {
+    padding: 20px 30px;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+/* Status Badge */
+.status-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status-venta {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-vendida {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* Notification */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 5px;
+    background: #2a9fd6;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 2000;
+    animation: slideIn 0.3s;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.notification.success {
+    background: #28a745;
+}
+
+.notification.error {
+    background: #dc3545;
+}
+
+/* Form Styles - Mejorar legibilidad de inputs en modales */
+.modal .form-group {
+    margin-bottom: 20px;
+}
+
+.modal .form-group label {
+    display: block;
+    color: #134563;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.modal input,
+.modal select,
+.modal textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #d0dde6;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #134563;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.modal input:focus,
+.modal select:focus,
+.modal textarea:focus {
+    outline: none;
+    border-color: #2a9fd6;
+    background: #f8fcff;
+    box-shadow: 0 0 0 3px rgba(42, 159, 214, 0.15),
+                0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal input:hover:not(:focus),
+.modal select:hover:not(:focus),
+.modal textarea:hover:not(:focus) {
+    border-color: #b5c3cf;
+}
+
+.modal input::placeholder,
+.modal textarea::placeholder {
+    color: #95a5a6;
+    opacity: 1;
+}
+
+/* Ocultar spinners SOLO en inputs que NO son recámaras ni baños */
+.modal input[type="number"]:not([data-field="recamaras"]):not([data-field="baños"]) {
+    -moz-appearance: textfield;
+}
+
+.modal input[type="number"]:not([data-field="recamaras"]):not([data-field="baños"])::-webkit-outer-spin-button,
+.modal input[type="number"]:not([data-field="recamaras"]):not([data-field="baños"])::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.modal select {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #ffffff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23134563' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat !important;
+    background-position: right 15px center !important;
+    background-size: 12px 12px !important;
+    background-attachment: scroll !important;
+    padding-right: 40px;
+}
+
+.modal select:hover {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%232a9fd6' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+}
+
+.modal select:focus {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%232a9fd6' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+}
+
+/* Fix para evitar flecha nativa en selects */
+.modal select::-ms-expand {
+    display: none;
+}
+
+/* Forzar background en todos los estados posibles */
+.modal select:active,
+.modal select:focus-visible,
+.modal select[size],
+.modal select[multiple] {
+    background-repeat: no-repeat !important;
+    background-position: right 15px center !important;
+    background-size: 12px 12px !important;
+}
+
+/* Input requerido con indicador visual */
+.modal input[required],
+.modal select[required],
+.modal textarea[required] {
+    border-left: 4px solid #2a9fd6;
+}
+
+.modal input:invalid:not(:focus),
+.modal select:invalid:not(:focus) {
+    border-color: #e74c3c;
+    border-left-color: #e74c3c;
+}
+
+.modal input:valid:not(:placeholder-shown),
+.modal select:valid {
+    border-left-color: #28a745;
+}
+
+/* Estilo para inputs numéricos con spinners visibles (SOLO recámaras y baños) */
+.modal input[type="number"][data-field="recamaras"],
+.modal input[type="number"][data-field="baños"] {
+    -moz-appearance: number-input;
+    -webkit-appearance: auto;
+}
+
+/* Asegurar que los spinners sean visibles y estilizados */
+.modal input[type="number"][data-field="recamaras"]::-webkit-outer-spin-button,
+.modal input[type="number"][data-field="recamaras"]::-webkit-inner-spin-button,
+.modal input[type="number"][data-field="baños"]::-webkit-outer-spin-button,
+.modal input[type="number"][data-field="baños"]::-webkit-inner-spin-button {
+    -webkit-appearance: inner-spin-button;
+    opacity: 1;
+    height: 40px;
+    cursor: pointer;
+    margin: 0;
+}

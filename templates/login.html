@@ -9,9 +9,9 @@
 </head>
 <body>
     <div class="login-wrapper">
-        <form class="login-box" method="post" action="/login">
+        <form class="login-box" method="post" action="{{ url_for('admin_bp.login') }}">
             <div class="login-logo">
-                <img src="../images/logotipo.png" alt="Logo MultiCasa">
+                <img src="{{ url_for('static', filename='images/logotipo.png') }}" alt="Logo MultiCasa">
             </div>
             <h2>Acceso Administrador</h2>
             <div class="form-group">
@@ -24,7 +24,7 @@
             </div>
             <button class="login-btn" type="submit">Ingresar</button>
             <div class="login-links">
-                <a href="index.html">← Volver</a>
+                <a href="{{ url_for('index') }}">← Volver</a>
                 <a href="#" class="recuperar">¿Olvidaste tu contraseña?</a>
             </div>
         </form>

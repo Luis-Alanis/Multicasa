@@ -32,3 +32,7 @@ class Admin(BaseModel):
         sql = f"DELETE FROM {self.table_name} WHERE id_admin = %s"
         self.query(sql, (id_admin,))
         return True
+
+    def obtener_por_correo(self, correo):
+        sql = f"SELECT * FROM {self.table_name} WHERE correo = %s"
+        return self.query(sql, (correo,), fetchone=True)

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - MultiCasa</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="../static/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Header -->
+        <header class="admin-header">
+            <div class="admin-logo">
+                <img src="{{ url_for('static', filename='images/logotipo.png') }}" alt="Logo">
+                <h1>Panel de Administración</h1>
+            </div>
+            <div class="admin-user">
+                <i class="fas fa-user-circle"></i>
+                <span>Bienvenido, Admin</span>
+                <a href="{{ url_for('admin_bp.logout') }}" class="btn-logout"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="admin-tabs">
+            <button class="tab-btn active" data-action="load-tab" data-tab="casa">
+                <i class="fas fa-home"></i> Casas
+            </button>
+            <button class="tab-btn" data-action="load-tab" data-tab="locacion">
+                <i class="fas fa-map-marker-alt"></i> Locaciones
+            </button>
+            <button class="tab-btn" data-action="load-tab" data-tab="usuario">
+                <i class="fas fa-users"></i> Usuarios
+            </button>
+            <button class="tab-btn" data-action="load-tab" data-tab="dashboard">
+                <i class="fas fa-chart-bar"></i> Dashboard
+            </button>
+            <button class="tab-btn" data-action="generar-reporte">
+                <i class="fas fa-file-pdf"></i> Generar Reporte PDF
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="admin-content">
+            <!-- CASAS TAB -->
+            <div id="casa-tab" class="tab-content active">
+                <div class="content-header">
+                    <h2><i class="fas fa-home"></i> Gestión de Casas</h2>
+                    <button class="btn-primary" data-action="open-modal" data-modal="casa">
+                        <i class="fas fa-plus"></i> Nueva Casa
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table id="tabla-casas">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Locación</th>
+                                <th>Código Postal</th>
+                                <th>Costo</th>
+                                <th>Recámaras</th>
+                                <th>Baños</th>
+                                <th>Estatus</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody data-target="casa-list"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- LOCACIONES TAB -->
+            <div id="locacion-tab" class="tab-content">
+                <div class="content-header">
+                    <h2><i class="fas fa-map-marker-alt"></i> Gestión de Locaciones</h2>
+                    <button class="btn-primary" data-action="open-modal" data-modal="locacion">
+                        <i class="fas fa-plus"></i> Nueva Locación
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table id="tabla-locaciones">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody data-target="locacion-list"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- USUARIOS TAB -->
+            <div id="usuario-tab" class="tab-content">
+                <div class="content-header">
+                    <h2><i class="fas fa-users"></i> Gestión de Usuarios</h2>
+                    <button class="btn-primary" data-action="open-modal" data-modal="usuario">
+                        <i class="fas fa-plus"></i> Nuevo Usuario
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table id="tabla-usuarios">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Teléfono</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody data-target="usuario-list"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="dashboard-tab" class="tab-content">
+                <div class="content-header">
+                    <h2><i class="fas fa-chart-bar"></i> Dashboard de Estadísticas</h2>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3><i class="fas fa-dollar-sign"></i> Casas por Rango de Costo</h3>
+                        <canvas id="chartCostos"></canvas>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h3><i class="fas fa-chart-pie"></i> Estatus de Ventas</h3>
+                        <canvas id="chartEstatus"></canvas>
+                    </div>
+                    
+                    <div class="dashboard-card stats-summary">
+                        <h3><i class="fas fa-info-circle"></i> Resumen General</h3>
+                        <div class="stat-item">
+                            <span class="stat-label">Total de Casas:</span>
+                            <span class="stat-value" id="totalCasas">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">En Venta:</span>
+                            <span class="stat-value stat-venta" id="enVenta">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Vendidas:</span>
+                            <span class="stat-value stat-vendida" id="vendidas">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Precio Promedio:</span>
+                            <span class="stat-value" id="precioPromedio">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL CASAS -->
+    <div id="modal-casa" class="modal" data-modal="casa">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 data-target="modal-title">Nueva Casa</h3>
+                <button class="close-modal" data-action="close-modal" data-modal="casa">&times;</button>
+            </div>
+            <form data-form="casa" data-entity="casa">
+                <input type="hidden" data-field="id">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Locación *</label>
+                        <select data-field="id_locacion" data-target="casa-locacion-select" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Código Postal</label>
+                        <input type="text" data-field="codigo_postal" maxlength="10">
+                    </div>
+                    <div class="form-group">
+                        <label>Latitud *</label>
+                        <input type="number" data-field="latitud" step="any" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Longitud *</label>
+                        <input type="number" data-field="longitud" step="any" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Costo *</label>
+                        <input type="number" data-field="costo" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Recámaras *</label>
+                        <input type="number" data-field="recamaras" min="1" step="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Baños *</label>
+                        <input type="number" data-field="baños" min="1" step="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Estatus *</label>
+                        <select data-field="estatus_venta" required>
+                            <option value="En Venta">En Venta</option>
+                            <option value="Vendida">Vendida</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Fotos (URL)</label>
+                        <input type="text" data-field="fotos">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" data-action="close-modal" data-modal="casa">Cancelar</button>
+                    <button type="submit" class="btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL LOCACIONES -->
+    <div id="modal-locacion" class="modal" data-modal="locacion">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 data-target="modal-title">Nueva Locación</h3>
+                <button class="close-modal" data-action="close-modal" data-modal="locacion">&times;</button>
+            </div>
+            <form data-form="locacion" data-entity="locacion">
+                <input type="hidden" data-field="id">
+                <div class="form-group">
+                    <label>Nombre *</label>
+                    <input type="text" data-field="nombre" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" data-action="close-modal" data-modal="locacion">Cancelar</button>
+                    <button type="submit" class="btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL USUARIOS -->
+    <div id="modal-usuario" class="modal" data-modal="usuario">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 data-target="modal-title">Nuevo Usuario</h3>
+                <button class="close-modal" data-action="close-modal" data-modal="usuario">&times;</button>
+            </div>
+            <form data-form="usuario" data-entity="usuario">
+                <input type="hidden" data-field="id">
+                <div class="form-group">
+                    <label>Nombre *</label>
+                    <input type="text" data-field="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label>Correo *</label>
+                    <input type="email" data-field="correo" required>
+                </div>
+                <div class="form-group">
+                    <label>Teléfono</label>
+                    <input type="tel" data-field="telefono">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" data-action="close-modal" data-modal="usuario">Cancelar</button>
+                    <button type="submit" class="btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- TEMPLATES -->
+    <template id="template-casa-row">
+        <tr>
+            <td data-field="id_casa"></td>
+            <td data-field="locacion"></td>
+            <td data-field="codigo_postal"></td>
+            <td data-field="costo"></td>
+            <td data-field="recamaras"></td>
+            <td data-field="baños"></td>
+            <td>
+                <span class="status-badge" data-field="estatus"></span>
+            </td>
+            <td>
+                <button class="btn-action btn-edit" data-action="edit" data-entity="casa">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn-action btn-delete" data-action="delete" data-entity="casa">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
+        </tr>
+    </template>
+
+    <template id="template-locacion-row">
+        <tr>
+            <td data-field="id_locacion"></td>
+            <td data-field="nombre"></td>
+            <td>
+                <button class="btn-action btn-edit" data-action="edit" data-entity="locacion">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn-action btn-delete" data-action="delete" data-entity="locacion">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
+        </tr>
+    </template>
+
+    <template id="template-usuario-row">
+        <tr>
+            <td data-field="id_usuario"></td>
+            <td data-field="nombre"></td>
+            <td data-field="correo"></td>
+            <td data-field="telefono"></td>
+            <td>
+                <button class="btn-action btn-edit" data-action="edit" data-entity="usuario">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn-action btn-delete" data-action="delete" data-entity="usuario">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
+        </tr>
+    </template>
+
+    <template id="template-locacion-option">
+        <option data-field="value"></option>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../static/js/admin.js"></script>
+</body>
+</html>
