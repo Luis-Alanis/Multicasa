@@ -327,6 +327,37 @@ body {
     margin-bottom: 20px;
 }
 
+.search-box.search-page {
+    background: #f5f9fc;
+    border: 1px solid #d0dde6;
+    color: #134563;
+}
+
+.search-box.search-page label {
+    color: #134563;
+    font-weight: bold;
+}
+
+.search-box input,
+.search-box select {
+    border: 1px solid #b5c3cf;
+    background: #f0f4f8;
+    color: #134563;
+    transition: border-color .2s, box-shadow .2s, background .2s;
+}
+
+.search-box input:focus,
+.search-box select:focus {
+    outline: none;
+    border-color: #2a9fd6;
+    box-shadow: 0 0 0 2px rgba(42,159,214,0.25);
+    background: #fff;
+}
+
+.search-box.search-page .search-btn {
+    border: 1px solid #1a8cc4;
+}
+
 .search-title {
     background: rgba(42, 159, 214, 0.5);
     padding: 10px;
