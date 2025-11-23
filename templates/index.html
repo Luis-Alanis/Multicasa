@@ -13,7 +13,7 @@
         <div class="header">
             <div class="logo-section">
                 <div class="logo-circle">
-                    <img src="{{ url_for('static', filename='images/logotipo.png') }}" alt="Logo MultiCasa" class="logo-icon">
+                    <img src="../images/logotipo.png" alt="Logo MultiCasa" class="logo-icon">
                 </div>
                 <div class="logo-text">
                     <h1>BIENES RAICES MULTICASA</h1>
@@ -29,11 +29,11 @@
 
         <!-- Navigation -->
         <nav class="nav">
-            <a href="{{ url_for('index') }}#inicio">Inicio</a>
-            <a href="{{ url_for('index') }}#compania">La Compañía</a>
-            <a href="{{ url_for('index') }}#servicios">Servicios</a>
-            <a href="{{ url_for('index') }}#requisitos">Requisitos</a>
-            <a href="{{ url_for('contacto_bp.contactos') }}">Contactos</a>
+            <a href="#inicio">Inicio</a>
+            <a href="#compania">La Compañía</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#requisitos">Requisitos</a>
+            <a href="/contactos">Contactos</a>
         </nav>
 
         <!-- Hero Section -->
@@ -111,11 +111,11 @@
                     <li><a href="#">VENTA</a></li>
                     <li><a href="#">MUDANZAS</a></li>
                     <li><a href="#">SEGUROS</a></li>
-                    <li><a href="{{ url_for('contacto_bp.contactos') }}">CONTACTOS</a></li>
+                    <li><a href="/contactos">CONTACTOS</a></li>
                 </ul>
 
                 <!-- Search Box -->
-                <form class="search-box search-page" action="{{ url_for('casa_bp.buscar_casas') }}" method="get">
+                <form class="search-box search-page" action="/casas/buscar" method="get">
                 <input type="hidden" id="user_lat" name="user_lat">
                 <input type="hidden" id="user_lon" name="user_lon">
                     <div class="form-group">
@@ -199,18 +199,22 @@
         <footer class="footer">
             <div class="footer-logo">
                 <div class="logo-circle footer-size">
-                    <img src="{{ url_for('static', filename='images/logotipo.png') }}" alt="Logo MultiCasa" class="logo-icon">
+                    <img src="../images/logotipo.png" alt="Logo MultiCasa" class="logo-icon">
                 </div>
                 <div class="footer-nav">
-                    <a href="{{ url_for('index') }}">Inicio</a>
+                    <a href="#">Inicio</a>
                     <span class="bullet">:</span>
-                    <a href="{{ url_for('index') }}#compania">La Compañía</a>
+                    <a href="#">Compra</a>
                     <span class="bullet">:</span>
-                    <a href="{{ url_for('index') }}#servicios">Servicios</a>
+                    <a href="#">Construir</a>
                     <span class="bullet">:</span>
-                    <a href="{{ url_for('index') }}#requisitos">Requisitos</a>
+                    <a href="#">Venta</a>
                     <span class="bullet">:</span>
-                    <a href="{{ url_for('contacto_bp.contactos') }}">Contactos</a>
+                    <a href="#">Mudanzas</a>
+                    <span class="bullet">:</span>
+                    <a href="#">Seguros</a>
+                    <span class="bullet">:</span>
+                    <a href="/contactos">Contactos</a>
                 </div>
             </div>
             <div class="footer-info">

@@ -113,18 +113,20 @@ class Casa(BaseModel):
         return self.query(sql, params)
     
     def buscar_completo(self, ubicacion=None, precio_min=None, precio_max=None,
-                        recamaras=None, baños=None, user_lat=None, user_lon=None,
-                        rango_km=None):
-
+                    recamaras=None, baños=None, user_lat=None, user_lon=None,
+                    rango_km=None, incluir_vendidas=False):
+    
         sql = """
             SELECT c.*, l.nombre AS locacion, l.id_locacion
             FROM casas c
             INNER JOIN catalogo_locacion l
             ON c.id_locacion = l.id_locacion
             WHERE 1 = 1
-            AND c.estatus_venta = 'En Venta'
         """
         params = []
+
+        if not incluir_vendidas:
+            sql += " AND c.estatus_venta = 'En Venta'"
 
         if ubicacion:
             sql += """
