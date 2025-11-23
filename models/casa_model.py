@@ -122,6 +122,7 @@ class Casa(BaseModel):
             INNER JOIN catalogo_locacion l
             ON c.id_locacion = l.id_locacion
             WHERE 1 = 1
+            AND c.estatus_venta = 'En Venta'
         """
         params = []
 
@@ -188,3 +189,19 @@ class Casa(BaseModel):
             return filtradas
 
         return casas
+    
+    def obtener_para_mapa(self, solo_en_venta=True):
+        sql = """
+            SELECT c.id_casa, c.latitud, c.longitud, c.costo, c.recamaras, c.baños, c.estatus_venta,
+                l.nombre AS locacion
+            FROM casas c
+            INNER JOIN catalogo_locacion l ON c.id_locacion = l.id_locacion
+            WHERE c.latitud IS NOT NULL AND c.longitud IS NOT NULL
+        """
+        params = []
+
+        if solo_en_venta:
+            sql += " AND c.estatus_venta = %s"
+            params.append("En Venta")
+
+        return self.query(sql, params)

@@ -23,59 +23,83 @@
                     <h2>BUSCAR PROPIEDADES</h2>
                     <h3>Refina tu búsqueda</h3>
 
-                    <form class="search-box search-page">
+                    <form class="search-box search-page" action="{{ url_for('casa_bp.buscar_casas') }}" method="get">
+                        <!-- Geolocalización -->
+                        <input type="hidden" id="user_lat" name="user_lat" value="{{ user_lat or '' }}">
+                        <input type="hidden" id="user_lon" name="user_lon" value="{{ user_lon or '' }}">
+
                         <div class="form-group">
                             <label>Ciudad / Estado / C.P.</label>
-                            <input type="text" name="ubicacion">
+                            <input type="text" name="ubicacion" value="{{ ubicacion or '' }}">
                         </div>
+
                         <div class="form-group">
                             <label>Rango de Busqueda (km)</label>
                             <select name="rango_km">
-                                <option value="">Cualquiera</option>
-                                <option value="1">1 km</option>
-                                <option value="5">5 km</option>
-                                <option value="10">10 km</option>
-                                <option value="25">25 km</option>
-                                <option value="50">50 km</option>
-                                <option value="100">100 km</option>
+                                <option value="" {% if not rango_km %}selected{% endif %}>Cualquiera</option>
+                                <option value="1" {% if rango_km=='1' %}selected{% endif %}>1 km</option>
+                                <option value="5" {% if rango_km=='5' %}selected{% endif %}>5 km</option>
+                                <option value="10" {% if rango_km=='10' %}selected{% endif %}>10 km</option>
+                                <option value="25" {% if rango_km=='25' %}selected{% endif %}>25 km</option>
+                                <option value="50" {% if rango_km=='50' %}selected{% endif %}>50 km</option>
+                                <option value="100" {% if rango_km=='100' %}selected{% endif %}>100 km</option>
                             </select>
                         </div>
+
                         <div class="form-group">
                             <label>Rango de Precio del:</label>
-                            <input type="number" name="precioMin">
+                            <input type="number" name="precioMin" value="{{ precioMin or '' }}">
                         </div>
+
                         <div class="form-group">
                             <label>A:</label>
-                            <input type="number" name="precioMax">
+                            <input type="number" name="precioMax" value="{{ precioMax or '' }}">
                         </div>
+
                         <div class="form-group">
                             <label>Recámaras</label>
                             <select name="recamaras">
-                                <option value="">Cualquiera</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4+</option>
+                                <option value="" {% if not recamaras %}selected{% endif %}>Cualquiera</option>
+                                <option value="1" {% if recamaras=='1' %}selected{% endif %}>1</option>
+                                <option value="2" {% if recamaras=='2' %}selected{% endif %}>2</option>
+                                <option value="3" {% if recamaras=='3' %}selected{% endif %}>3</option>
+                                <option value="4+" {% if recamaras=='4+' %}selected{% endif %}>4+</option>
                             </select>
                         </div>
+
                         <div class="form-group">
                             <label>Baños</label>
-                            <select name="banos">
-                                <option value="">Cualquiera</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3+</option>
+                            <select name="baños">
+                                <option value="" {% if not baños %}selected{% endif %}>Cualquiera</option>
+                                <option value="1" {% if baños=='1' %}selected{% endif %}>1</option>
+                                <option value="2" {% if baños=='2' %}selected{% endif %}>2</option>
+                                <option value="3+" {% if baños=='3+' %}selected{% endif %}>3+</option>
                             </select>
                         </div>
-                        <button class="search-btn" type="submit">Buscar</button>
+
+                        <button id="btnBuscar" class="search-btn" type="submit">Buscar</button>
                     </form>
 
+                    <!-- Resultados -->
                     <div id="resultados" style="margin-top:30px;">
                         <h3>Resultados</h3>
-                        <p>Ingresa criterios y presiona Buscar.</p>
+                        {% if resultados %}
+                            <ul>
+                            {% for casa in resultados %}
+                                <li>
+                                    {{ casa['locacion'] }} - ${{ casa['costo'] }} - {{ casa['recamaras'] }} recámaras / {{ casa['baños'] }} baños
+                                    {% if casa.get('distancia_km') %}- {{ casa['distancia_km'] | round(2) }} km{% endif %}
+                                </li>
+                            {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>Ingresa criterios y presiona Buscar.</p>
+                        {% endif %}
                     </div>
+
                 </div>
             </div>
+
             <aside class="sidebar">
                 <div class="info-box">
                     <h4>Consejo</h4>
@@ -109,6 +133,7 @@
             </div>
         </footer>
     </div>
+
     <script src="../static/js/scripts.js"></script>
 </body>
 </html>

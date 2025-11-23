@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mapa de Casas</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <style>
+        #map { height: 600px; }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+        var map = L.map('map').setView([25.423, -100.952], 12); // Ajusta la vista inicial
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        L.marker([25.438056, -100.983333]).addTo(map).bindPopup('<b>Saltillo Coahuila</b><br>Costo: $1450000.00');
+L.marker([25.556357, -100.947549]).addTo(map).bindPopup('<b>Ramos Arizpe Coahuila</b><br>Costo: $1550000.00');
+L.marker([25.445891, -100.857489]).addTo(map).bindPopup('<b>Arteaga Coahuila</b><br>Costo: $2680000.00');
+L.marker([25.703790, -100.286518]).addTo(map).bindPopup('<b>Monterrey Nuevo León</b><br>Costo: $3200000.00');
+L.marker([25.807640, -100.595940]).addTo(map).bindPopup('<b>García Nuevo León</b><br>Costo: $1780000.00');
+L.marker([25.838090, -100.313200]).addTo(map).bindPopup('<b>Escobedo Nuevo León</b><br>Costo: $1600000.00');
+
+    </script>
+</body>
+</html>
