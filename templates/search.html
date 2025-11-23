@@ -36,24 +36,23 @@
                         <div class="form-group">
                             <label>Rango de Busqueda (km)</label>
                             <select name="rango_km">
-                                <option value="" {% if not rango_km %}selected{% endif %}>Cualquiera</option>
-                                <option value="1" {% if rango_km=='1' %}selected{% endif %}>1 km</option>
-                                <option value="5" {% if rango_km=='5' %}selected{% endif %}>5 km</option>
-                                <option value="10" {% if rango_km=='10' %}selected{% endif %}>10 km</option>
-                                <option value="25" {% if rango_km=='25' %}selected{% endif %}>25 km</option>
-                                <option value="50" {% if rango_km=='50' %}selected{% endif %}>50 km</option>
-                                <option value="100" {% if rango_km=='100' %}selected{% endif %}>100 km</option>
+                                <option value="1" {% if rango_km==1 %}selected{% endif %}>1 km</option>
+                                <option value="5" {% if rango_km==5 %}selected{% endif %}>5 km</option>
+                                <option value="10" {% if rango_km==10 %}selected{% endif %}>10 km</option>
+                                <option value="25" {% if rango_km==25 %}selected{% endif %}>25 km</option>
+                                <option value="50" {% if rango_km==50 %}selected{% endif %}>50 km</option>
+                                <option value="100" {% if rango_km==100 %}selected{% endif %}>100 km</option>
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label>Rango de Precio del:</label>
-                            <input type="number" name="precioMin" value="{{ precioMin or '' }}">
+                            <input type="number" name="precioMin" value="{{ precio_min or '' }}">
                         </div>
 
                         <div class="form-group">
                             <label>A:</label>
-                            <input type="number" name="precioMax" value="{{ precioMax or '' }}">
+                            <input type="number" name="precioMax" value="{{ precio_max or '' }}">
                         </div>
 
                         <div class="form-group">
