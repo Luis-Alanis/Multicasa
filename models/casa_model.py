@@ -1,3 +1,4 @@
+from flask import json
 from models.BaseModel import BaseModel
 import math
 
@@ -24,29 +25,32 @@ class Casa(BaseModel):
         return self.query(sql, (id_casa,), fetchone=True)
 
     # ---- CREATE ----
-
     def crear(self, id_locacion, latitud, longitud, codigo_postal, costo,
-              recamaras, baños, estatus_venta, fotos=None):
+            recamaras, baños, estatus_venta, fotos=None):
 
-        sql = f"""
+        # Convertimos la lista de fotos a JSON si no es None
+        fotos_json = json.dumps(fotos) if fotos else json.dumps([])
+
+        sql = """
             INSERT INTO casas
             (id_locacion, latitud, longitud, codigo_postal, costo,
-             recamaras, baños, estatus_venta, fotos)
+            recamaras, baños, estatus_venta, fotos)
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
 
         params = (id_locacion, latitud, longitud, codigo_postal, costo,
-                  recamaras, baños, estatus_venta, fotos)
+                recamaras, baños, estatus_venta, fotos_json)
 
         self.query(sql, params)
         return True
 
     # ---- UPDATE ----
-
     def actualizar(self, id_casa, id_locacion, latitud, longitud, codigo_postal,
-                   costo, recamaras, baños, estatus_venta, fotos):
+                costo, recamaras, baños, estatus_venta, fotos):
 
-        sql = f"""
+        fotos_json = json.dumps(fotos) if fotos else json.dumps([])
+
+        sql = """
             UPDATE casas
             SET id_locacion=%s, latitud=%s, longitud=%s, codigo_postal=%s,
                 costo=%s, recamaras=%s, baños=%s, estatus_venta=%s, fotos=%s
@@ -54,7 +58,7 @@ class Casa(BaseModel):
         """
 
         params = (id_locacion, latitud, longitud, codigo_postal,
-                  costo, recamaras, baños, estatus_venta, fotos, id_casa)
+                costo, recamaras, baños, estatus_venta, fotos_json, id_casa)
 
         self.query(sql, params)
         return True
