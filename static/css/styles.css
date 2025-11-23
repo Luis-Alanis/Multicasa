@@ -80,6 +80,7 @@ body {
 
 .phone-icon {
     font-size: 24px;
+    color: #7fc842;
 }
 
 .contact-box span {
@@ -172,6 +173,10 @@ body {
     display: flex;
     align-items: center;
     gap: 5px;
+}
+
+.user-menu button i {
+    font-size: 14px;
 }
 
 .user-menu button:hover {
@@ -289,6 +294,13 @@ body {
     color: #134563;
     text-decoration: none;
     font-weight: bold;
+}
+
+.service-item a i,
+.links-section a i {
+    margin-right: 5px;
+    color: #134563;
+    font-size: 14px;
 }
 
 /* Links Section */
@@ -468,6 +480,11 @@ body {
     margin-bottom: 10px;
 }
 
+.stats i {
+    margin-right: 5px;
+    color: #7fc842;
+}
+
 .counter {
     background: white;
     padding: 10px;
@@ -528,4 +545,243 @@ body {
 
 .bullet {
     color: #7fc842;
+}
+
+/* Login Styles */
+.login-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom, #a8c5d8 0%, #7ba5c1 100%);
+    padding: 30px;
+}
+
+.login-box {
+    width: 340px;
+    background: white;
+    padding: 30px 25px 35px;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    color: #134563;
+}
+
+.login-box h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 20px;
+    letter-spacing: .5px;
+}
+
+.login-logo {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #2a9fd6;
+    background:#134563;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.login-logo img {
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+}
+
+.login-box .form-group label {
+    color: #134563;
+    font-size: 13px;
+}
+
+.login-box .form-group input {
+    background: #f0f4f8;
+    border: 1px solid #b5c3cf;
+    color: #134563;
+}
+
+.login-box .form-group input:focus {
+    outline: none;
+    border-color: #2a9fd6;
+    box-shadow: 0 0 0 2px rgba(42,159,214,0.25);
+    background: #fff;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(to bottom,#2a9fd6,#1a8cc4);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.login-btn:hover {
+    background: linear-gradient(to bottom,#1a8cc4,#15689d);
+}
+
+.login-links {
+    margin-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+}
+
+.login-links a {
+    text-decoration: none;
+    color: #134563;
+}
+
+.login-links a.recuperar {
+    color: #2a9fd6;
+}
+
+/* Contact Form Styles */
+.contact-form {
+    background: #f5f9fc;
+    padding: 30px;
+    border-radius: 5px;
+    border: 1px solid #d0dde6;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.contact-form .form-group label {
+    display: block;
+    color: #134563;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #b5c3cf;
+    border-radius: 4px;
+    background: #f0f4f8;
+    color: #134563;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    transition: border-color .2s, box-shadow .2s, background .2s;
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #2a9fd6;
+    box-shadow: 0 0 0 2px rgba(42,159,214,0.25);
+    background: #fff;
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.contact-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.contact-info-item {
+    text-align: center;
+    padding: 20px;
+    background: #f5f9fc;
+    border-radius: 5px;
+    border: 1px solid #d0dde6;
+}
+
+.contact-icon {
+    font-size: 36px;
+    margin-bottom: 10px;
+    color: #2a9fd6;
+}
+
+.contact-icon i {
+    display: inline-block;
+}
+
+.contact-info-item h4 {
+    color: #134563;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.contact-info-item p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.contact-info-item a {
+    color: #2a9fd6;
+    text-decoration: none;
+}
+
+.contact-info-item a:hover {
+    text-decoration: underline;
+}
+
+/* Notification Styles */
+.notificacion {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+}
+
+.notificacion.mostrar {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.notificacion-success {
+    background: linear-gradient(to right, #7fc842, #6bb032);
+    color: white;
+}
+
+.notificacion-error {
+    background: linear-gradient(to right, #e74c3c, #c0392b);
+    color: white;
+}
+
+.notificacion-info {
+    background: linear-gradient(to right, #2a9fd6, #1a8cc4);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .notificacion {
+        right: 10px;
+        left: 10px;
+        text-align: center;
+    }
 }

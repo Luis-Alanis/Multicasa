@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - MultiCasa</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo-circle">
+                    <img src="../images/logotipo.png" alt="Logo MultiCasa" class="logo-icon">
+                </div>
+                <div class="logo-text">
+                    <h1>BIENES RAICES MULTICASA</h1>
+                    <p>TU MEJOR OPCIÓN EN AGENCIA DE BIENES RAÍCES</p>
+                </div>
+            </div>
+            <div class="contact-box">
+                <i class="fas fa-phone phone-icon"></i>
+                <span>LLama al:</span>
+                <a href="tel:1-800-123-4567">1-800-123-4567</a>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="nav">
+            <a href="index.html">Inicio</a>
+            <a href="index.html#compania">La Compañía</a>
+            <a href="index.html#servicios">Servicios</a>
+            <a href="index.html#requisitos">Requisitos</a>
+            <a href="contactos.html">Contactos</a>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="content-area">
+                <div class="welcome">
+                    <h2>CONTÁCTANOS</h2>
+                    <h3>Estamos aquí para ayudarte</h3>
+
+                    <p style="margin-bottom: 30px;">
+                        ¿Tienes alguna pregunta o necesitas más información sobre nuestras propiedades? 
+                        Completa el siguiente formulario y nos pondremos en contacto contigo lo antes posible.
+                    </p>
+
+                    <form class="contact-form" id="contactForm" method="post" action="/contacto">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nombre">Nombre completo *</label>
+                                <input type="text" id="nombre" name="nombre" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Correo electrónico *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="telefono">Teléfono</label>
+                                <input type="tel" id="telefono" name="telefono">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="asunto">Asunto *</label>
+                                <select id="asunto" name="asunto" required>
+                                    <option value="">Selecciona una opción</option>
+                                    <option value="compra">Quiero comprar una propiedad</option>
+                                    <option value="venta">Quiero vender mi propiedad</option>
+                                    <option value="informacion">Solicitar información</option>
+                                    <option value="visita">Agendar una visita</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="mensaje">Mensaje *</label>
+                                <textarea id="mensaje" name="mensaje" rows="6" required 
+                                    placeholder="Escribe tu mensaje aquí..."></textarea>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="search-btn">Enviar Mensaje</button>
+                    </form>
+                </div>
+
+                <!-- Contact Info Section -->
+                <div class="services">
+                    <h2>INFORMACIÓN DE CONTACTO</h2>
+                    
+                    <div class="contact-info-grid">
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h4>Email</h4>
+                            <p><a href="mailto:multicasa@gmail.com">multicasa@gmail.com</a></p>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <h4>Teléfono</h4>
+                            <p><a href="tel:1-800-123-4567">1-800-123-4567</a></p>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h4>Dirección</h4>
+                            <p>Saltillo, Coahuila<br>México</p>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h4>Horario</h4>
+                            <p>Lun - Vie: 9:00 AM - 6:00 PM<br>Sáb: 9:00 AM - 2:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <ul class="sidebar-menu">
+                    <li><a href="#">COMPRA</a></li>
+                    <li><a href="#">CONSTRUIR</a></li>
+                    <li><a href="#">VENTA</a></li>
+                    <li><a href="#">MUDANZAS</a></li>
+                    <li><a href="#">SEGUROS</a></li>
+                    <li><a href="contactos.html">CONTACTOS</a></li>
+                </ul>
+
+                <!-- Info Boxes -->
+                <div class="info-box">
+                    <h4>¿Necesitas ayuda inmediata?</h4>
+                    <p>Llámanos ahora al 1-800-123-4567</p>
+                </div>
+
+                <div class="info-box">
+                    <h4>Horarios de Atención</h4>
+                    <p>Lunes a Viernes: 9:00 AM - 6:00 PM<br>Sábados: 9:00 AM - 2:00 PM</p>
+                </div>
+
+                <div class="info-box">
+                    <h4>Visítanos</h4>
+                    <p>Nuestras oficinas en Saltillo están abiertas para atenderte.</p>
+                </div>
+
+                <!-- Stats -->
+                <div class="stats">
+                    <p><i class="fas fa-chart-bar"></i> Conectados: 674<br><i class="fas fa-eye"></i> Visitas:</p>
+                    <div class="counter">
+                        <span>0</span>
+                        <span>7</span>
+                        <span>8</span>
+                        <span>9</span>
+                        <span>9</span>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-logo">
+                <div class="logo-circle footer-size">
+                    <img src="../images/logotipo.png" alt="Logo MultiCasa" class="logo-icon">
+                </div>
+                <div class="footer-nav">
+                    <a href="index.html">Inicio</a>
+                    <span class="bullet">:</span>
+                    <a href="#">Compra</a>
+                    <span class="bullet">:</span>
+                    <a href="#">Construir</a>
+                    <span class="bullet">:</span>
+                    <a href="#">Venta</a>
+                    <span class="bullet">:</span>
+                    <a href="#">Mudanzas</a>
+                    <span class="bullet">:</span>
+                    <a href="#">Seguros</a>
+                    <span class="bullet">:</span>
+                    <a href="contactos.html">Contactos</a>
+                </div>
+            </div>
+            <div class="footer-info">
+                <p>Bienes Raíces MultiCasa © 2012</p>
+                <a href="#">RaiRaíces Del Emperador</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../static/js/scripts.js"></script>
+</body>
+</html>
