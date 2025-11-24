@@ -53,25 +53,21 @@ document.addEventListener('DOMContentLoaded', initHeroSlider);
     });
 }());
 
-// Contact form handler
+// Contact form handler - COMENTADO para permitir envío normal del formulario
+/*
 document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contactForm');
     
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // Mostrar notificación de éxito
             mostrarNotificacion('✓ Correo enviado correctamente', 'success');
-            
-            // Limpiar el formulario
             contactForm.reset();
-            
-            // Scroll suave hacia arriba para ver la notificación
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
 });
+*/
 
 // Función para mostrar notificaciones
 function mostrarNotificacion(mensaje, tipo = 'success') {
@@ -96,3 +92,49 @@ function mostrarNotificacion(mensaje, tipo = 'success') {
         }, 300);
     }, 3000);
 }
+
+// Mejoras para dispositivos móviles
+document.addEventListener('DOMContentLoaded', function() {
+    // Detectar si es dispositivo móvil
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+        // Agregar clase para móviles
+        document.body.classList.add('is-mobile');
+        
+        // Mejorar el comportamiento de los inputs en móviles
+        const inputs = document.querySelectorAll('input[type="number"]');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.setAttribute('inputmode', 'decimal');
+            });
+        });
+        
+        // Prevenir zoom en inputs en iOS
+        const meta = document.querySelector('meta[name="viewport"]');
+        if (meta) {
+            meta.setAttribute('content', 
+                'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'
+            );
+        }
+    }
+    
+    // Cerrar menús al hacer scroll en móviles
+    let lastScroll = 0;
+    window.addEventListener('scroll', function() {
+        const currentScroll = window.pageYOffset;
+        
+        if (isMobile && Math.abs(currentScroll - lastScroll) > 50) {
+            // Cerrar modales si están abiertos
+            const modals = document.querySelectorAll('.modal.show');
+            modals.forEach(modal => {
+                if (modal.classList.contains('show')) {
+                    const closeBtn = modal.querySelector('.close-modal');
+                    if (closeBtn) closeBtn.click();
+                }
+            });
+        }
+        
+        lastScroll = currentScroll;
+    });
+});

@@ -876,443 +876,169 @@ body {
 }
 
 @media (max-width: 1024px) {
+    /* ========== RESPONSIVE DESIGN ========== */
+
+    /* Tablets y pantallas medianas (768px - 1024px) */
+    .container {
+        max-width: 100%;
+    }
+    
+    .main-content {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        order: 2;
+    }
+    
+    .content-area {
+        width: 100%;
+        order: 1;
+    }
+    
+    .casas-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    
     .dashboard-grid {
         grid-template-columns: 1fr;
     }
 }
 
-.notificacion-info {
-    background: linear-gradient(to right, #2a9fd6, #1a8cc4);
-    color: white;
-}
-
-/* Resultados de búsqueda */
-.resultados-container {
-    margin: 30px 0;
-}
-
-.resultados-container h3 {
-    color: #134563;
-    margin-bottom: 20px;
-    font-size: 20px;
-}
-
-.casas-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    margin-bottom: 30px;
-}
-
-.casa-card {
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.casa-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-.casa-image {
-    position: relative;
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-    background: #f0f0f0;
-}
-
-.casa-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.foto-count {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background: rgba(0,0,0,0.7);
-    color: white;
-    padding: 5px 10px;
-    border-radius: 3px;
-    font-size: 12px;
-}
-
-.status-badge {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    padding: 5px 12px;
-    border-radius: 3px;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-.status-venta {
-    background: #28a745;
-    color: white;
-}
-
-.status-vendida {
-    background: #dc3545;
-    color: white;
-}
-
-.casa-info {
-    padding: 15px;
-}
-
-.casa-ubicacion {
-    color: #134563;
-    font-size: 18px;
-    margin: 0 0 5px 0;
-}
-
-.casa-cp {
-    color: #666;
-    font-size: 12px;
-    margin: 0 0 10px 0;
-}
-
-.casa-precio {
-    color: #2a9fd6;
-    font-size: 24px;
-    font-weight: bold;
-    margin: 10px 0;
-}
-
-.casa-caracteristicas {
-    display: flex;
-    gap: 15px;
-    margin: 15px 0;
-    padding: 10px 0;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-}
-
-.casa-caracteristicas span {
-    color: #666;
-    font-size: 14px;
-}
-
-.casa-caracteristicas i {
-    color: #2a9fd6;
-    margin-right: 5px;
-}
-
-.casa-distancia {
-    color: #7fc842;
-    font-size: 13px;
-    margin: 10px 0;
-}
-
-.btn-ver-detalles {
-    width: 100%;
-    padding: 10px;
-    background: linear-gradient(to bottom, #2a9fd6 0%, #1a8cc4 100%);
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background 0.3s;
-}
-
-.btn-ver-detalles:hover {
-    background: linear-gradient(to bottom, #1a8cc4 0%, #134563 100%);
-}
-
-.no-resultados {
-    text-align: center;
-    padding: 50px 20px;
-    background: white;
-    border-radius: 8px;
-    margin: 30px 0;
-}
-
-.no-resultados i {
-    font-size: 48px;
-    color: #ccc;
-    margin-bottom: 20px;
-}
-
-.no-resultados p {
-    color: #666;
-    font-size: 16px;
-}
-
-/* Estilos para página de detalles */
-.breadcrumb {
-    padding: 15px 0;
-    color: #666;
-    font-size: 14px;
-    margin-bottom: 20px;
-}
-
-.breadcrumb a {
-    color: #2a9fd6;
-    text-decoration: none;
-}
-
-.breadcrumb a:hover {
-    text-decoration: underline;
-}
-
-.detalle-galeria {
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 30px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.foto-principal {
-    position: relative;
-    width: 100%;
-    height: 500px;
-    overflow: hidden;
-}
-
-.foto-principal img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.status-badge-detalle {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.miniaturas-galeria {
-    display: flex;
-    gap: 10px;
-    padding: 15px;
-    background: #f8f9fa;
-    overflow-x: auto;
-}
-
-.miniatura {
-    width: 120px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 5px;
-    cursor: pointer;
-    opacity: 0.6;
-    transition: opacity 0.3s, transform 0.3s;
-    border: 2px solid transparent;
-}
-
-.miniatura:hover {
-    opacity: 0.9;
-    transform: scale(1.05);
-}
-
-.miniatura.active {
-    opacity: 1;
-    border-color: #2a9fd6;
-}
-
-.detalle-info-principal {
-    background: white;
-    border-radius: 8px;
-    padding: 30px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
-}
-
-.detalle-header {
-    border-bottom: 2px solid #f0f0f0;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-}
-
-.detalle-titulo {
-    color: #134563;
-    font-size: 32px;
-    margin: 0 0 10px 0;
-}
-
-.detalle-cp {
-    color: #666;
-    font-size: 16px;
-    margin: 5px 0;
-}
-
-.detalle-folio {
-    color: #999;
-    font-size: 14px;
-    margin: 5px 0;
-}
-
-.detalle-precio-section {
-    text-align: center;
-    padding: 20px;
-    background: linear-gradient(135deg, #2a9fd6 0%, #1a8cc4 100%);
-    border-radius: 8px;
-    margin-bottom: 30px;
-}
-
-.detalle-precio {
-    color: white;
-    font-size: 42px;
-    font-weight: bold;
-    margin: 0;
-}
-
-.detalle-caracteristicas {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    margin-bottom: 30px;
-}
-
-.caracteristica-item {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 20px;
-    background: #f8f9fa;
-    border-radius: 8px;
-    border-left: 4px solid #2a9fd6;
-}
-
-.caracteristica-item i {
-    font-size: 32px;
-    color: #2a9fd6;
-}
-
-.caracteristica-item strong {
-    display: block;
-    color: #134563;
-    font-size: 24px;
-}
-
-.caracteristica-item span {
-    color: #666;
-    font-size: 14px;
-}
-
-.detalle-descripcion,
-.detalle-ubicacion {
-    margin-bottom: 30px;
-}
-
-.detalle-descripcion h3,
-.detalle-ubicacion h3 {
-    color: #134563;
-    font-size: 20px;
-    margin-bottom: 15px;
-}
-
-.detalle-descripcion h3 i,
-.detalle-ubicacion h3 i {
-    margin-right: 10px;
-    color: #2a9fd6;
-}
-
-.detalle-descripcion p {
-    color: #666;
-    line-height: 1.8;
-    font-size: 16px;
-}
-
-.detalle-acciones {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin-top: 30px;
-}
-
-.btn-contactar,
-.btn-ficha-tecnica,
-.btn-volver {
-    flex: 1;
-    min-width: 200px;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-.btn-contactar {
-    background: linear-gradient(to bottom, #2a9fd6 0%, #1a8cc4 100%);
-    color: white;
-}
-
-.btn-contactar:hover {
-    background: linear-gradient(to bottom, #1a8cc4 0%, #134563 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(42, 159, 214, 0.4);
-}
-
-.btn-ficha-tecnica {
-    background: linear-gradient(to bottom, #7fc842 0%, #6bb02e 100%);
-    color: white;
-}
-
-.btn-ficha-tecnica:hover {
-    background: linear-gradient(to bottom, #6bb02e 0%, #5a9024 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(127, 200, 66, 0.4);
-}
-
-.btn-volver {
-    background: linear-gradient(to bottom, #6c757d 0%, #5a6268 100%);
-    color: white;
-}
-
-.btn-volver:hover {
-    background: linear-gradient(to bottom, #5a6268 0%, #545b62 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(108, 117, 125, 0.4);
-}
-
-.btn-sidebar {
-    display: block;
-    text-align: center;
-    padding: 10px 20px;
-    background: linear-gradient(to bottom, #2a9fd6 0%, #1a8cc4 100%);
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 15px;
-    font-weight: bold;
-    transition: all 0.3s;
-}
-
-.btn-sidebar:hover {
-    background: linear-gradient(to bottom, #1a8cc4 0%, #134563 100%);
-    transform: translateY(-2px);
-}
-
+/* Móviles y pantallas pequeñas (menos de 768px) */
 @media (max-width: 768px) {
-    .foto-principal {
-        height: 300px;
+    /* Header */
+    .header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
     }
     
-    .detalle-titulo {
+    .logo-section {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .logo-text h1 {
+        font-size: 20px;
+    }
+    
+    .logo-text p {
+        font-size: 10px;
+    }
+    
+    .contact-box {
+        flex-direction: column;
+        padding: 10px;
+        text-align: center;
+    }
+    
+    /* Navigation */
+    .nav {
+        flex-direction: column;
+    }
+    
+    .nav a {
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        padding: 12px;
+    }
+    
+    .nav a:last-child {
+        border-bottom: none;
+    }
+    
+    /* Hero */
+    .hero {
+        height: 250px;
+    }
+    
+    .user-menu {
+        flex-direction: column;
+        gap: 5px;
+        top: 5px;
+        right: 5px;
+    }
+    
+    .user-menu button {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+    
+    /* Welcome Section */
+    .welcome h2 {
         font-size: 24px;
     }
     
+    .welcome h3 {
+        font-size: 14px;
+    }
+    
+    .preview-images {
+        flex-direction: column;
+    }
+    
+    .preview-stack {
+        width: 100%;
+        height: 200px;
+    }
+    
+    .preview-stack img {
+        width: 90%;
+    }
+    
+    /* Search Box */
+    .search-box {
+        padding: 15px;
+    }
+    
+    /* Forms */
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .contact-info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Casas Grid */
+    .casas-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .casa-card {
+        margin-bottom: 15px;
+    }
+    
+    /* Detalle Casa */
+    .foto-principal {
+        height: 250px;
+    }
+    
+    .detalle-titulo {
+        font-size: 20px;
+    }
+    
     .detalle-precio {
-        font-size: 32px;
+        font-size: 28px;
+    }
+    
+    .detalle-caracteristicas {
+        grid-template-columns: 1fr;
+    }
+    
+    .caracteristica-item {
+        padding: 15px;
+    }
+    
+    .caracteristica-item i {
+        font-size: 24px;
+    }
+    
+    .caracteristica-item strong {
+        font-size: 18px;
     }
     
     .detalle-acciones {
@@ -1323,5 +1049,107 @@ body {
     .btn-ficha-tecnica,
     .btn-volver {
         min-width: 100%;
+        width: 100%;
+    }
+    
+    .miniaturas-galeria {
+        justify-content: center;
+    }
+    
+    .miniatura {
+        width: 80px;
+        height: 60px;
+    }
+    
+    /* Footer */
+    .footer {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        padding: 20px 15px;
+    }
+    
+    .footer-logo {
+        flex-direction: column;
+    }
+    
+    .footer-nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .footer-info {
+        text-align: center;
+    }
+    
+    /* Sidebar */
+    .sidebar-menu {
+        margin-bottom: 15px;
+    }
+    
+    .stats {
+        padding: 10px;
+    }
+    
+    .counter {
+        padding: 8px;
+    }
+    
+    /* Login */
+    .login-box {
+        width: 100%;
+        max-width: 340px;
+        padding: 20px;
+    }
+}
+
+/* Móviles muy pequeños (menos de 480px) */
+@media (max-width: 480px) {
+    .logo-circle {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .logo-text h1 {
+        font-size: 16px;
+    }
+    
+    .logo-text p {
+        font-size: 9px;
+    }
+    
+    .welcome h2 {
+        font-size: 20px;
+    }
+    
+    .services h2 {
+        font-size: 16px;
+    }
+    
+    .casa-precio {
+        font-size: 20px;
+    }
+    
+    .casa-ubicacion {
+        font-size: 16px;
+    }
+    
+    .detalle-precio {
+        font-size: 24px;
+    }
+    
+    .caracteristica-item strong {
+        font-size: 16px;
+    }
+    
+    .links-section {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .notificacion {
+        left: 10px;
+        right: 10px;
+        width: calc(100% - 20px);
     }
 }

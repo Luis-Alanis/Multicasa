@@ -476,3 +476,236 @@ tbody tr:hover {
     cursor: pointer;
     margin: 0;
 }
+
+/* ========== RESPONSIVE DESIGN ADMIN ========== */
+
+/* Tablets (768px - 1024px) */
+@media (max-width: 1024px) {
+    .admin-content {
+        padding: 20px;
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .admin-tabs {
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    
+    .tab-btn {
+        font-size: 14px;
+        padding: 12px 20px;
+    }
+}
+
+/* Móviles (menos de 768px) */
+@media (max-width: 768px) {
+    /* Header */
+    .admin-header {
+        flex-direction: column;
+        padding: 15px 20px;
+        gap: 15px;
+    }
+    
+    .admin-logo {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .admin-logo h1 {
+        font-size: 18px;
+    }
+    
+    .admin-logo img {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .admin-user {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .admin-user i {
+        font-size: 24px;
+    }
+    
+    /* Tabs */
+    .admin-tabs {
+        padding: 0 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .tab-btn {
+        font-size: 13px;
+        padding: 10px 15px;
+        flex: 1 1 auto;
+        min-width: 120px;
+    }
+    
+    .tab-btn i {
+        display: block;
+        margin: 0 auto 5px;
+    }
+    
+    /* Content */
+    .admin-content {
+        padding: 15px;
+    }
+    
+    .content-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .content-header h2 {
+        font-size: 22px;
+    }
+    
+    .btn-primary {
+        width: 100%;
+    }
+    
+    /* Table */
+    .table-container {
+        overflow-x: auto;
+    }
+    
+    table {
+        min-width: 600px;
+    }
+    
+    th, td {
+        padding: 10px;
+        font-size: 13px;
+    }
+    
+    /* Modal */
+    .modal-content {
+        width: 95%;
+        max-width: 95%;
+        margin: 10px;
+    }
+    
+    .modal-header {
+        padding: 15px 20px;
+    }
+    
+    .modal-header h3 {
+        font-size: 18px;
+    }
+    
+    .modal form {
+        padding: 20px;
+    }
+    
+    .form-grid {
+        gap: 15px;
+    }
+    
+    .modal-footer {
+        padding: 15px 20px;
+        flex-direction: column;
+    }
+    
+    .modal-footer button {
+        width: 100%;
+    }
+    
+    /* Dashboard */
+    .dashboard-grid {
+        gap: 20px;
+    }
+    
+    .dashboard-card {
+        padding: 20px;
+    }
+    
+    .dashboard-card h3 {
+        font-size: 16px;
+    }
+    
+    .stat-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .stat-value {
+        font-size: 18px;
+    }
+    
+    /* Notification */
+    .notification {
+        left: 10px;
+        right: 10px;
+        width: calc(100% - 20px);
+        top: 10px;
+    }
+}
+
+/* Móviles pequeños (menos de 480px) */
+@media (max-width: 480px) {
+    .admin-logo h1 {
+        font-size: 16px;
+    }
+    
+    .tab-btn {
+        font-size: 11px;
+        padding: 8px 12px;
+        min-width: 100px;
+    }
+    
+    .content-header h2 {
+        font-size: 18px;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        font-size: 13px;
+        padding: 10px 20px;
+    }
+    
+    th, td {
+        padding: 8px;
+        font-size: 12px;
+    }
+    
+    .btn-action {
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+    
+    .dashboard-card {
+        padding: 15px;
+    }
+    
+    .dashboard-card h3 {
+        font-size: 14px;
+    }
+}
+
+/* Landscape en móviles */
+@media (max-height: 500px) and (orientation: landscape) {
+    .modal-content {
+        max-height: 95vh;
+    }
+    
+    .admin-header {
+        padding: 10px 20px;
+    }
+    
+    .hero {
+        height: 200px;
+    }
+}
