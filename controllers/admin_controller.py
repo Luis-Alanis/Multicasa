@@ -48,32 +48,59 @@ def get_casas():
         return jsonify({'error': 'No autorizado'}), 401
     return jsonify(CasaService.obtener_todas(incluir_vendidas=True))
 
+# ===========================
+# GET: Obtener casa por ID
+# ===========================
 @admin_bp.route('/api/casas/<int:id>', methods=['GET'])
 def get_casa(id):
     if 'admin_id' not in session:
         return jsonify({'error': 'No autorizado'}), 401
-    casa = CasaService.obtener_por_id(id)
-    if casa and isinstance(casa.get('fotos'), list):
-        casa['fotos'] = ', '.join(casa['fotos'])
-    return jsonify(casa if casa else {})
 
+    casa = CasaService.obtener_por_id(id)
+    if not casa:
+        return jsonify({}), 404
+
+    # Si alguna parte del frontend necesita un string de fotos, puedes usar:
+    # if isinstance(casa.get('fotos'), list):
+    #     casa['fotos_str'] = ', '.join(casa['fotos'])
+
+    return jsonify(casa)
+
+
+# ===========================
+# POST: Crear nueva casa
+# ===========================
 @admin_bp.route('/api/casas', methods=['POST'])
 def crear_casa():
     if 'admin_id' not in session:
         return jsonify({'error': 'No autorizado'}), 401
-    data = request.get_json()
-    nueva = CasaService.crear(data)
-    return jsonify({'success': True, 'data': nueva})
 
+    data = request.get_json() or {}
+
+    # Convertir fotos de string a lista si se envía como string
+    if 'fotos' in data and isinstance(data['fotos'], str):
+        data['fotos'] = [f.strip() for f in data['fotos'].split(',') if f.strip()]
+
+    nueva = CasaService.crear(data)
+    return jsonify({'success': True, 'data': nueva if nueva else {}})
+
+
+# ===========================
+# PUT: Actualizar casa existente
+# ===========================
 @admin_bp.route('/api/casas/<int:id>', methods=['PUT'])
 def actualizar_casa(id):
     if 'admin_id' not in session:
         return jsonify({'error': 'No autorizado'}), 401
-    data = request.get_json()
+
+    data = request.get_json() or {}
+
+    # Convertir fotos de string a lista si el frontend envió string
     if 'fotos' in data and isinstance(data['fotos'], str):
         data['fotos'] = [f.strip() for f in data['fotos'].split(',') if f.strip()]
+
     actualizada = CasaService.actualizar(id, data)
-    return jsonify({'success': True, 'data': actualizada})
+    return jsonify({'success': True, 'data': actualizada if actualizada else {}})
 
 @admin_bp.route('/api/casas/<int:id>', methods=['DELETE'])
 def eliminar_casa(id):
