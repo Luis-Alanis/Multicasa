@@ -15,7 +15,7 @@ app = Flask(__name__)
 app.secret_key = secrets.token_hex(32)
 
 # Configuración de Flask-Mail
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_SERVER'] = 'smtp.gmail.com' 
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
