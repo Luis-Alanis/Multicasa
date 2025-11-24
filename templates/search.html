@@ -85,6 +85,66 @@
                     </form>
 
                     <!-- Resultados -->
+                    {% if resultados %}
+                    <div class="resultados-container">
+                        <h3>Resultados de la búsqueda ({{ resultados|length }} propiedades encontradas)</h3>
+                        
+                        <div class="casas-grid">
+                            {% for casa in resultados %}
+                            <div class="casa-card">
+                                <div class="casa-image">
+                                    {% if casa.foto_principal %}
+                                        <img src="{{ url_for('static', filename=casa.foto_principal) }}" 
+                                             alt="Casa en {{ casa.locacion }}"
+                                             onerror="this.src='{{ url_for('static', filename='images/no-image.jpg') }}'">
+                                        {% if casa.fotos_lista|length > 1 %}
+                                        <span class="foto-count"><i class="fas fa-camera"></i> {{ casa.fotos_lista|length }}</span>
+                                        {% endif %}
+                                    {% else %}
+                                        <img src="{{ url_for('static', filename='images/no-image.jpg') }}" 
+                                             alt="Sin imagen disponible">
+                                    {% endif %}
+                                    <span class="status-badge {% if casa.estatus_venta == 'En Venta' %}status-venta{% else %}status-vendida{% endif %}">
+                                        {{ casa.estatus_venta }}
+                                    </span>
+                                </div>
+                                
+                                <div class="casa-info">
+                                    <h4 class="casa-ubicacion">
+                                        <i class="fas fa-map-marker-alt"></i> {{ casa.locacion }}
+                                    </h4>
+                                    
+                                    {% if casa.codigo_postal %}
+                                    <p class="casa-cp">C.P. {{ casa.codigo_postal }}</p>
+                                    {% endif %}
+                                    
+                                    <p class="casa-precio">${{ "{:,.2f}".format(casa.costo) }}</p>
+                                    
+                                    <div class="casa-caracteristicas">
+                                        <span><i class="fas fa-bed"></i> {{ casa.recamaras }} Recámaras</span>
+                                        <span><i class="fas fa-bath"></i> {{ casa.baños }} Baños</span>
+                                    </div>
+                                    
+                                    {% if casa.distancia_km %}
+                                    <p class="casa-distancia">
+                                        <i class="fas fa-map-pin"></i> A {{ "{:.2f}".format(casa.distancia_km) }} km de tu ubicación
+                                    </p>
+                                    {% endif %}
+                                    
+                                    <button class="btn-ver-detalles" onclick="window.location.href='{{ url_for('casa_bp.detalles_casa', id_casa=casa.id_casa) }}'">
+                                        Ver Detalles <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% elif request.args %}
+                    <div class="no-resultados">
+                        <i class="fas fa-search"></i>
+                        <p>No se encontraron propiedades con los criterios seleccionados.</p>
+                    </div>
+                    {% endif %}
 
                     <!-- Contenedor del mapa -->
                     <div id="mapa" style="height: 500px; margin-top:30px;"></div>

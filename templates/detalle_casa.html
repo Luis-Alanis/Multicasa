@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ casa.locacion }} - MultiCasa</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+<body>
+    <div class="container">
+        <nav class="nav">
+            <a href="{{ url_for('index') }}">Inicio</a>
+            <a href="{{ url_for('index') }}#compania">La Compañía</a>
+            <a href="{{ url_for('index') }}#servicios">Servicios</a>
+            <a href="{{ url_for('menu_bp.buscar') }}">Buscar</a>
+            <a href="{{ url_for('contacto_bp.contactos') }}">Contactos</a>
+        </nav>
+
+        <div class="main-content">
+            <div class="content-area">
+                <!-- Breadcrumb -->
+                <div class="breadcrumb">
+                    <a href="{{ url_for('index') }}">Inicio</a> / 
+                    <a href="{{ url_for('menu_bp.buscar') }}">Buscar</a> / 
+                    <span>Detalles de Propiedad</span>
+                </div>
+
+                <!-- Galería de fotos -->
+                <div class="detalle-galeria">
+                    <div class="foto-principal">
+                        <img id="imagenPrincipal" src="{{ url_for('static', filename=casa.fotos_lista[0]) }}" 
+                             alt="Casa en {{ casa.locacion }}">
+                        <span class="status-badge-detalle {% if casa.estatus_venta == 'En Venta' %}status-venta{% else %}status-vendida{% endif %}">
+                            {{ casa.estatus_venta }}
+                        </span>
+                    </div>
+                    
+                    {% if casa.fotos_lista|length > 1 %}
+                    <div class="miniaturas-galeria">
+                        {% for foto in casa.fotos_lista %}
+                        <img src="{{ url_for('static', filename=foto) }}" 
+                             alt="Vista {{ loop.index }}"
+                             class="miniatura {% if loop.index == 1 %}active{% endif %}"
+                             onclick="cambiarImagen('{{ url_for('static', filename=foto) }}', this)">
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Información de la propiedad -->
+                <div class="detalle-info-principal">
+                    <div class="detalle-header">
+                        <h1 class="detalle-titulo">
+                            <i class="fas fa-map-marker-alt"></i> {{ casa.locacion }}
+                        </h1>
+                        {% if casa.codigo_postal %}
+                        <p class="detalle-cp">C.P. {{ casa.codigo_postal }}</p>
+                        {% endif %}
+                        <p class="detalle-folio">Folio: #{{ casa.id_casa }}</p>
+                    </div>
+
+                    <div class="detalle-precio-section">
+                        <p class="detalle-precio">${{ "{:,.2f}".format(casa.costo) }} MXN</p>
+                    </div>
+
+                    <div class="detalle-caracteristicas">
+                        <div class="caracteristica-item">
+                            <i class="fas fa-bed"></i>
+                            <div>
+                                <strong>{{ casa.recamaras }}</strong>
+                                <span>Recámaras</span>
+                            </div>
+                        </div>
+                        <div class="caracteristica-item">
+                            <i class="fas fa-bath"></i>
+                            <div>
+                                <strong>{{ casa.baños }}</strong>
+                                <span>Baños</span>
+                            </div>
+                        </div>
+                        <div class="caracteristica-item">
+                            <i class="fas fa-map-marked-alt"></i>
+                            <div>
+                                <strong>Ubicación</strong>
+                                <span>{{ casa.latitud }}, {{ casa.longitud }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="detalle-descripcion">
+                        <h3><i class="fas fa-info-circle"></i> Descripción</h3>
+                        <p>
+                            Hermosa propiedad ubicada en {{ casa.locacion }}, cuenta con {{ casa.recamaras }} 
+                            recámaras y {{ casa.baños }} baños. Esta propiedad ofrece una excelente ubicación 
+                            y características ideales para tu familia.
+                        </p>
+                    </div>
+
+                    <div class="detalle-ubicacion">
+                        <h3><i class="fas fa-map"></i> Ubicación</h3>
+                        <div id="mapa-detalle" style="height: 300px; border-radius: 8px;"></div>
+                    </div>
+
+                    <!-- Botones de acción -->
+                    <div class="detalle-acciones">
+                        <button class="btn-contactar" onclick="window.location.href='{{ url_for('contacto_bp.contactos') }}'">
+                            <i class="fas fa-envelope"></i> Contactar
+                        </button>
+                        <button class="btn-ficha-tecnica" onclick="descargarFichaTecnica({{ casa.id_casa }})">
+                            <i class="fas fa-file-pdf"></i> Descargar Ficha Técnica
+                        </button>
+                        <button class="btn-volver" onclick="window.history.back()">
+                            <i class="fas fa-arrow-left"></i> Volver a Búsqueda
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <div class="info-box">
+                    <h4>¿Te interesa esta propiedad?</h4>
+                    <p>Contáctanos para agendar una visita o resolver tus dudas.</p>
+                    <a href="{{ url_for('contacto_bp.contactos') }}" class="btn-sidebar">Contactar Ahora</a>
+                </div>
+
+                <div class="info-box">
+                    <h4>Información de Contacto</h4>
+                    <p><i class="fas fa-phone"></i> 1-800-123-4567</p>
+                    <p><i class="fas fa-envelope"></i> multicasa@gmail.com</p>
+                </div>
+
+                <div class="stats">
+                    <p><i class="fas fa-chart-bar"></i> Conectados: 674<br><i class="fas fa-eye"></i> Visitas:</p>
+                    <div class="counter">
+                        <span>0</span><span>7</span><span>8</span><span>9</span><span>9</span>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-logo">
+                <div class="logo-circle footer-size">
+                    <img src="{{ url_for('static', filename='images/logotipo.png') }}" alt="Logo MultiCasa" class="logo-icon">
+                </div>
+                <div class="footer-nav">
+                    <a href="{{ url_for('index') }}">Inicio</a>
+                    <span class="bullet">:</span>
+                    <a href="{{ url_for('index') }}#servicios">Servicios</a>
+                    <span class="bullet">:</span>
+                    <a href="{{ url_for('contacto_bp.contactos') }}">Contactos</a>
+                </div>
+            </div>
+            <div class="footer-info">
+                <p>Bienes Raíces MultiCasa © 2025</p>
+                <a href="#">RaiRaíces Del Emperador</a>
+            </div>
+        </footer>
+    </div>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    <script>
+        // Cambiar imagen principal
+        function cambiarImagen(src, element) {
+            document.getElementById('imagenPrincipal').src = src;
+            document.querySelectorAll('.miniatura').forEach(m => m.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        // Descargar ficha técnica
+        function descargarFichaTecnica(idCasa) {
+            window.open(`/api/ficha-tecnica/${idCasa}/pdf`, '_blank');
+        }
+
+        // Inicializar mapa
+        document.addEventListener('DOMContentLoaded', function() {
+            const lat = {{ casa.latitud }};
+            const lon = {{ casa.longitud }};
+            
+            const map = L.map('mapa-detalle').setView([lat, lon], 15);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+            
+            L.marker([lat, lon]).addTo(map)
+                .bindPopup('<b>{{ casa.locacion }}</b><br>${{ "{:,.2f}".format(casa.costo) }}')
+                .openPopup();
+        });
+    </script>
+</body>
+</html>

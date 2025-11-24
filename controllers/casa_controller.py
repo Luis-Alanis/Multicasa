@@ -1,5 +1,6 @@
-from flask import Blueprint, render_template, request, jsonify
+from flask import Blueprint, render_template, request, jsonify, flash, redirect
 from models.casa_model import Casa
+import json
 
 casa_bp = Blueprint('casa_bp', __name__)
 
@@ -27,11 +28,34 @@ def buscar_casas():
         rango_km=rango_km
     )
 
-    # Pasamos resultados y parámetros al template
-    return render_template('search.html',
-        resultados=resultados, # Lista de casas encontradas
+    # Procesar fotos para cada resultado
+    for resultado in resultados:
+        if resultado.get('fotos'):
+            try:
+                # Intentar parsear como JSON
+                fotos = json.loads(resultado['fotos'])
+                if isinstance(fotos, list) and len(fotos) > 0:
+                    # Asegurarse de que las rutas sean correctas
+                    resultado['fotos_lista'] = [f"images/casas/{foto}" if not foto.startswith('images/') else foto for foto in fotos]
+                    resultado['foto_principal'] = resultado['fotos_lista'][0]
+                else:
+                    resultado['fotos_lista'] = []
+                    resultado['foto_principal'] = 'images/no-image.jpg'
+            except json.JSONDecodeError:
+                # Si falla el JSON, intentar separar por comas
+                fotos_raw = [foto.strip() for foto in resultado['fotos'].split(',') if foto.strip()]
+                if fotos_raw:
+                    resultado['fotos_lista'] = [f"images/casas/{foto}" if not foto.startswith('images/') else foto for foto in fotos_raw]
+                    resultado['foto_principal'] = resultado['fotos_lista'][0]
+                else:
+                    resultado['fotos_lista'] = []
+                    resultado['foto_principal'] = 'images/no-image.jpg'
+        else:
+            resultado['fotos_lista'] = []
+            resultado['foto_principal'] = 'images/no-image.jpg'
 
-        # Parámetros de búsqueda para mantener en el formulario
+    return render_template('search.html',
+        resultados=resultados,
         ubicacion=ubicacion or "",
         precio_min=precio_min or "",
         precio_max=precio_max or "",
@@ -39,3 +63,31 @@ def buscar_casas():
         baños=baños or "",
         rango_km=rango_km or ""
     )
+
+@casa_bp.route('/casas/detalles/<int:id_casa>', methods=['GET'])
+def detalles_casa(id_casa):
+    casa = Casa()
+    resultado = casa.obtener_por_id(id_casa)
+    
+    if not resultado:
+        flash('Casa no encontrada', 'error')
+        return redirect(url_for('menu_bp.buscar'))
+    
+    # Procesar fotos
+    if resultado.get('fotos'):
+        try:
+            fotos = json.loads(resultado['fotos'])
+            if isinstance(fotos, list) and len(fotos) > 0:
+                resultado['fotos_lista'] = [f"images/casas/{foto}" if not foto.startswith('images/') else foto for foto in fotos]
+            else:
+                resultado['fotos_lista'] = ['images/no-image.jpg']
+        except json.JSONDecodeError:
+            fotos_raw = [foto.strip() for foto in resultado['fotos'].split(',') if foto.strip()]
+            if fotos_raw:
+                resultado['fotos_lista'] = [f"images/casas/{foto}" if not foto.startswith('images/') else foto for foto in fotos_raw]
+            else:
+                resultado['fotos_lista'] = ['images/no-image.jpg']
+    else:
+        resultado['fotos_lista'] = ['images/no-image.jpg']
+    
+    return render_template('detalle_casa.html', casa=resultado)
