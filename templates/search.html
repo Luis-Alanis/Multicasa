@@ -42,12 +42,21 @@
                             <label>Rango de Busqueda (km)</label>
                             <select name="rango_km">
                                 <option value="" {% if not rango_km %}selected{% endif %}>Cualquiera</option>
+<<<<<<< HEAD
                                 <option value="1" {% if rango_km==1 %}selected{% endif %}>1 km</option>
                                 <option value="5" {% if rango_km==5 %}selected{% endif %}>5 km</option>
                                 <option value="10" {% if rango_km==10 %}selected{% endif %}>10 km</option>
                                 <option value="25" {% if rango_km==25 %}selected{% endif %}>25 km</option>
                                 <option value="50" {% if rango_km==50 %}selected{% endif %}>50 km</option>
                                 <option value="100" {% if rango_km==100 %}selected{% endif %}>100 km</option>
+=======
+                                <option value="1" {% if rango_km == '1' or rango_km == 1.0 %}selected{% endif %}>1 km</option>
+                                <option value="5" {% if rango_km == '5' or rango_km == 5.0 %}selected{% endif %}>5 km</option>
+                                <option value="10" {% if rango_km == '10' or rango_km == 10.0 %}selected{% endif %}>10 km</option>
+                                <option value="25" {% if rango_km == '25' or rango_km == 25.0 %}selected{% endif %}>25 km</option>
+                                <option value="50" {% if rango_km == '50' or rango_km == 50.0 %}selected{% endif %}>50 km</option>
+                                <option value="100" {% if rango_km == '100' or rango_km == 100.0 %}selected{% endif %}>100 km</option>
+>>>>>>> 2dc8393e2dada18ceeabc10e7661f5fa42cb7f90
                             </select>
                         </div>
 
