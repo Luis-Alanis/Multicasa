@@ -477,6 +477,14 @@ tbody tr:hover {
     margin: 0;
 }
 
+/* Override para evitar posición absoluta heredada de styles.css */
+.admin-container table .status-badge {
+    position: static;
+    top: auto;
+    left: auto;
+    display: inline-block;
+}
+
 /* ========== RESPONSIVE DESIGN ADMIN ========== */
 
 /* Tablets (768px - 1024px) */

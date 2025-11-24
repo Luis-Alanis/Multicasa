@@ -59,10 +59,17 @@ const State = {
 const Renderer = {
     createRowFromTemplate(entity, item) {
         const config = CONFIG.entities[entity];
-        const row = DOM.cloneTemplate(config.template);
+        const fragment = DOM.cloneTemplate(config.template);
         
-        if (!row) {
+        if (!fragment) {
             console.error(`No se pudo clonar el template para ${entity}`);
+            return null;
+        }
+        
+        // IMPORTANTE: Obtener el elemento TR del fragmento primero
+        const row = fragment.querySelector('tr');
+        if (!row) {
+            console.error(`No se encontró TR en el template de ${entity}`);
             return null;
         }
         
@@ -78,8 +85,16 @@ const Renderer = {
             } else if (fieldName === 'telefono') {
                 field.textContent = item.telefono || 'N/A';
             } else if (fieldName === 'estatus') {
-                field.textContent = item.estatus_venta;
-                field.classList.add(item.estatus_venta === 'En Venta' ? 'status-venta' : 'status-vendida');
+                const statusSpan = document.createElement('span');
+                statusSpan.className = 'status-badge';
+                statusSpan.textContent = item.estatus_venta;
+                if (item.estatus_venta === 'En Venta') {
+                    statusSpan.classList.add('status-venta');
+                } else {
+                    statusSpan.classList.add('status-vendida');
+                }
+                field.innerHTML = '';
+                field.appendChild(statusSpan);
             } else if (fieldName === 'value') {
                 field.value = item[config.idField];
                 field.textContent = item.nombre;
@@ -95,6 +110,7 @@ const Renderer = {
             button.dataset.entity = entity;
         });
         
+        // Retornar el TR, no el fragmento
         return row;
     },
     

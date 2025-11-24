@@ -1,14 +1,26 @@
 from flask import Blueprint, render_template, request, jsonify, flash, redirect, url_for, current_app
 from flask_mail import Message
-from models.usuario_model import Usuario
+from models.database import SessionLocal
+from models.repositories import UsuarioRepository
+from models.entities import Usuario
 from datetime import datetime
+from sqlalchemy.exc import IntegrityError
+from services.usuario_service import UsuarioService
+
 
 contacto_bp = Blueprint('contacto_bp', __name__) 
 
-usuario_model = Usuario()
+def get_db():
+    """Helper para obtener sesión de base de datos"""
+    db = SessionLocal()
+    try:
+        return db
+    finally:
+        pass
 
 @contacto_bp.route('/contactos', methods=['GET', 'POST'])
 def contactos():
+    """Página de contacto con formulario"""
     if request.method == 'POST':
         try:
             # Obtener datos del formulario
@@ -23,8 +35,17 @@ def contactos():
                 flash('Por favor completa todos los campos obligatorios', 'error')
                 return redirect(url_for('contacto_bp.contactos'))
             
-            # Guardar en la base de datos
-            usuario_model.crear(nombre, correo, telefono, asunto, mensaje, estado='pendiente')
+            # Guardar en la base de datos usando ORM
+            data = {
+                'nombre': nombre,
+                'correo': correo,
+                'telefono': telefono,
+                'asunto': asunto,
+                'mensaje': mensaje,
+                'estado': 'pendiente'
+            }
+            
+            UsuarioService.crear(data)
             
             # Enviar correo electrónico
             enviar_correo_contacto(nombre, correo, telefono, asunto, mensaje)
@@ -33,7 +54,9 @@ def contactos():
             return redirect(url_for('contacto_bp.contactos'))
             
         except Exception as e:
-            print(f"Error al procesar contacto: {str(e)}")
+            print(f"Error completo: {str(e)}")
+            import traceback
+            traceback.print_exc()
             flash('Hubo un error al enviar tu mensaje. Por favor intenta de nuevo.', 'error')
             return redirect(url_for('contacto_bp.contactos'))
     
@@ -75,10 +98,9 @@ def enviar_correo_contacto(nombre, correo, telefono, asunto, mensaje):
                     max-width: 600px;
                     margin: 0 auto;
                     padding: 20px;
-                    background-color: #f5f9fc;
                 }}
                 .header {{
-                    background: linear-gradient(to right, #1a5275, #134563);
+                    background: linear-gradient(to bottom, #134563 0%, #0d3147 100%);
                     color: white;
                     padding: 20px;
                     text-align: center;
@@ -87,10 +109,10 @@ def enviar_correo_contacto(nombre, correo, telefono, asunto, mensaje):
                 .content {{
                     background: white;
                     padding: 30px;
-                    border-radius: 0 0 5px 5px;
+                    border: 1px solid #d0dde6;
                 }}
                 .info-row {{
-                    margin-bottom: 15px;
+                    margin: 15px 0;
                     padding: 10px;
                     background: #f8f9fa;
                     border-left: 4px solid #2a9fd6;
@@ -125,39 +147,42 @@ def enviar_correo_contacto(nombre, correo, telefono, asunto, mensaje):
                     <p>Has recibido un nuevo mensaje de contacto desde el sitio web:</p>
                     
                     <div class="info-row">
-                        <span class="label">Nombre:</span> {nombre}
+                        <span class="label">👤 Nombre:</span> {nombre}
                     </div>
                     
                     <div class="info-row">
-                        <span class="label">Correo:</span> <a href="mailto:{correo}">{correo}</a>
+                        <span class="label">📧 Correo:</span> {correo}
                     </div>
                     
                     <div class="info-row">
-                        <span class="label">Teléfono:</span> {telefono}
+                        <span class="label">📱 Teléfono:</span> {telefono}
                     </div>
                     
                     <div class="info-row">
-                        <span class="label">Asunto:</span> {asunto_texto}
+                        <span class="label">📋 Asunto:</span> {asunto_texto}
                     </div>
                     
                     <div class="mensaje">
-                        <p class="label">Mensaje:</p>
+                        <p class="label">💬 Mensaje:</p>
                         <p>{mensaje}</p>
                     </div>
                     
-                    <div class="footer">
-                        <p>Fecha: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}</p>
-                        <p>Este mensaje fue enviado desde el formulario de contacto de MultiCasa</p>
-                    </div>
+                    <p style="margin-top: 20px; color: #666; font-size: 14px;">
+                        <strong>Fecha:</strong> {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}
+                    </p>
+                </div>
+                <div class="footer">
+                    <p>Este mensaje fue enviado desde el formulario de contacto de Bienes Raíces MultiCasa</p>
+                    <p>© 2025 MultiCasa - Todos los derechos reservados</p>
                 </div>
             </div>
         </body>
         </html>
         """
         
-        # Crear mensaje de confirmación para el cliente
+        # Crear mensaje para el cliente
         msg_cliente = Message(
-            subject='Confirmación de mensaje recibido - MultiCasa',
+            subject='Gracias por contactarnos - Bienes Raíces MultiCasa',
             recipients=[correo]
         )
         
@@ -175,10 +200,9 @@ def enviar_correo_contacto(nombre, correo, telefono, asunto, mensaje):
                     max-width: 600px;
                     margin: 0 auto;
                     padding: 20px;
-                    background-color: #f5f9fc;
                 }}
                 .header {{
-                    background: linear-gradient(to right, #1a5275, #134563);
+                    background: linear-gradient(to bottom, #134563 0%, #0d3147 100%);
                     color: white;
                     padding: 20px;
                     text-align: center;
@@ -253,56 +277,45 @@ def enviar_correo_contacto(nombre, correo, telefono, asunto, mensaje):
         print(f"❌ Error al enviar correo: {str(e)}")
         raise
 
-# ---- LISTAR TODOS ----
+# ========== API ENDPOINTS (PARA ADMINISTRACIÓN) ==========
+
 @contacto_bp.route('/contacto/listar', methods=['GET'])
 def listar_contactos():
-    contactos = usuario_model.obtener_todos()
-    return jsonify(contactos)
+    """Listar todos los contactos (para admin)"""
+    return jsonify(UsuarioService.obtener_todos())
 
-# ---- VER UN CONTACTO POR ID ----
 @contacto_bp.route('/contacto/ver/<int:id_usuario>', methods=['GET'])
 def ver_contacto(id_usuario):
-    contacto = usuario_model.obtener_por_id(id_usuario)
-    if contacto:
-        return jsonify(contacto)
-    return jsonify({"error": "Contacto no encontrado"}), 404
+    """Ver un contacto específico"""
+    c = UsuarioService.obtener_por_id(id_usuario)
+    return jsonify(c) if c else (jsonify({'error': 'Contacto no encontrado'}), 404)
 
 @contacto_bp.route('/contacto/crear', methods=['POST'])
 def crear_contacto():
-    # Esta ruta ya no se usa, todo se maneja en /contactos
+    """Esta ruta ya no se usa, todo se maneja en /contactos"""
     return redirect(url_for('contacto_bp.contactos'))
 
-# ---- ACTUALIZAR CONTACTO ----
 @contacto_bp.route('/contacto/actualizar/<int:id_usuario>', methods=['PUT'])
 def actualizar_contacto(id_usuario):
+    """Actualizar un contacto"""
     data = request.get_json()
-    nombre = data.get('nombre')
-    correo = data.get('correo')
-    telefono = data.get('telefono')
-    asunto = data.get('asunto')
-    mensaje = data.get('mensaje')
-    estado = data.get('estado')
+    actualizado = UsuarioService.actualizar(id_usuario, data)
+    if actualizado:
+        return jsonify({'success': 'Contacto actualizado', 'data': actualizado})
+    return jsonify({'error': 'Contacto no encontrado'}), 404
 
-    if not nombre or not correo or not mensaje:
-        return jsonify({"error": "Nombre, correo y mensaje son obligatorios"}), 400
-
-    updated = usuario_model.actualizar(id_usuario, nombre, correo, telefono, asunto, mensaje, estado)
-    if updated:
-        return jsonify({"success": "Contacto actualizado"})
-    return jsonify({"error": "Contacto no encontrado"}), 404
-
-# ---- ELIMINAR CONTACTO ----
 @contacto_bp.route('/contacto/eliminar/<int:id_usuario>', methods=['DELETE'])
 def eliminar_contacto(id_usuario):
-    deleted = usuario_model.eliminar(id_usuario)
-    if deleted:
-        return jsonify({"success": "Contacto eliminado"})
-    return jsonify({"error": "Contacto no encontrado"}), 404
+    """Eliminar un contacto"""
+    eliminado = UsuarioService.eliminar(id_usuario)
+    if eliminado:
+        return jsonify({'success': 'Contacto eliminado'})
+    return jsonify({'error': 'Contacto no encontrado'}), 404
 
-# ---- BUSCAR CONTACTOS ----
 @contacto_bp.route('/contacto/buscar', methods=['GET'])
 def buscar_contacto():
+    """Buscar contactos por texto"""
     texto = request.args.get('q', '')
-    resultados = usuario_model.buscar(texto)
+    resultados = UsuarioService.buscar(texto)
     return jsonify(resultados)
 

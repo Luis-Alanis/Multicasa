@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-11-2025 a las 23:32:36
+-- Tiempo de generación: 24-11-2025 a las 13:25:32
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -65,12 +65,15 @@ CREATE TABLE `casas` (
 --
 
 INSERT INTO `casas` (`id_casa`, `id_locacion`, `latitud`, `longitud`, `codigo_postal`, `costo`, `recamaras`, `baños`, `estatus_venta`, `fotos`) VALUES
-(1, 1, 25.438056, -100.983333, '25000', 1450000.00, 2, 1, 'En Venta', ''),
-(2, 2, 25.556357, -100.947549, '25900', 1550000.00, 3, 2, 'En Venta', ''),
-(3, 3, 25.445891, -100.857489, '25350', 2680000.00, 4, 3, 'Vendida', ''),
-(4, 4, 25.703790, -100.286518, '67130', 3200000.00, 3, 2, 'En Venta', ''),
-(5, 5, 25.807640, -100.595940, '66023', 1780000.00, 3, 2, 'En Venta', ''),
-(6, 6, 25.838090, -100.313200, '66072', 1600000.00, 2, 1, 'Vendida', '');
+(1, 1, 25.438056, -100.983333, '25000', 1450000.00, 1, 2, 'En Venta', '[\"images/casas/casa1-1.jpg\", \"images/casas/casa1-2.jpg\", \"images/casas/casa1-3.jpg\"]'),
+(2, 2, 25.556357, -100.947549, '25900', 1550000.00, 3, 2, 'En Venta', '[\"casa2-1.jpg\", \"casa2-2.jpg\", \"casa2-3.jpeg\"]'),
+(3, 3, 25.445891, -100.857489, '25350', 2680000.00, 4, 3, 'Vendida', '[\"casa3-1.jpg\", \"casa3-2.jpg\", \"casa3-3.jpg\"]'),
+(4, 4, 25.703790, -100.286518, '67130', 3200000.00, 3, 2, 'En Venta', '[\"casa4-1.png\", \"casa4-2.jpeg\", \"casa4-3.jpg\"]'),
+(5, 5, 25.807640, -100.595940, '66023', 1780000.00, 3, 2, 'En Venta', '[\"casa5-1.jpg\", \"casa5-2.jpg\", \"casa5-3.jpg\"]'),
+(6, 6, 25.838090, -100.313200, '66072', 1600000.00, 2, 1, 'Vendida', '[\"casa6-1.jpg\", \"casa6-2.jpg\", \"casa6-3.jpg\"]'),
+(7, 1, 25.438703, -9999.999999, '25290', 2000000.00, 2, 2, 'Vendida', '[\"images/casas/\\\"\", \"images/casas/[\", \"images/casas/]\", \"images/casas/\\\"\"]'),
+(9, 2, 25.438703, -100.301042, '25900', 2300000.00, 2, 2, 'En Venta', '[\"images/no-image.jpg\"]'),
+(10, 6, 25.438703, -103.017456, '25700', 3000000.00, 4, 3, 'En Venta', '[]');
 
 -- --------------------------------------------------------
 
@@ -93,7 +96,8 @@ INSERT INTO `catalogo_locacion` (`id_locacion`, `nombre`) VALUES
 (5, 'García Nuevo León'),
 (4, 'Monterrey Nuevo León'),
 (2, 'Ramos Arizpe Coahuila'),
-(1, 'Saltillo Coahuila');
+(1, 'Saltillo Coahuila'),
+(223, 'Torreon, Coahuila');
 
 -- --------------------------------------------------------
 
@@ -105,17 +109,22 @@ CREATE TABLE `usuarios` (
   `id_usuario` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `correo` varchar(120) NOT NULL,
-  `telefono` varchar(20) DEFAULT NULL
+  `telefono` varchar(20) DEFAULT NULL,
+  `asunto` varchar(255) NOT NULL,
+  `mensaje` text NOT NULL,
+  `estado` varchar(50) NOT NULL DEFAULT 'Pendiente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `nombre`, `correo`, `telefono`) VALUES
-(1, 'Carlos Medina', 'carlos.medina@example.com', '8442001122'),
-(2, 'Ana López', 'ana.lopez@example.com', '8441552983'),
-(3, 'Luis Herrera', 'luis.herrera@example.com', '8441789021');
+INSERT INTO `usuarios` (`id_usuario`, `nombre`, `correo`, `telefono`, `asunto`, `mensaje`, `estado`) VALUES
+(1, 'Carlos Medina', 'carlos.medina@example.com', '8442001122', 'compra', 'Estoy interesado en comprar una propiedad en la ciudad de Saltillo.', 'Pendiente'),
+(2, 'Ana López', 'ana.lopez@example.com', '8441552983', 'venta', 'Quiero vender mi departamento y necesito más información sobre cómo proceder.', 'Pendiente'),
+(3, 'Luis Herrera', 'luis.herrera@example.com', '8441789021', 'visita', 'Me gustaría agendar una visita para conocer la casa ubicada en Monterrey.', 'Pendiente'),
+(4, 'Luis Antonio Alanis Quiroz', 'luisantonioalanisquiroz@gmail.com', '8443694029', 'visita', '¿Cuando puedo agendar?', 'pendiente'),
+(12, 'Luis Antonio Alanis Quiroz', 'luisantonioalanisquiroz@gmail.com', '8443694029', 'informacion', 'preguntar', 'pendiente');
 
 --
 -- Índices para tablas volcadas
@@ -149,8 +158,7 @@ ALTER TABLE `catalogo_locacion`
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id_usuario`),
-  ADD UNIQUE KEY `correo` (`correo`);
+  ADD PRIMARY KEY (`id_usuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -166,19 +174,19 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT de la tabla `casas`
 --
 ALTER TABLE `casas`
-  MODIFY `id_casa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_casa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `catalogo_locacion`
 --
 ALTER TABLE `catalogo_locacion`
-  MODIFY `id_locacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=223;
+  MODIFY `id_locacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=224;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Restricciones para tablas volcadas

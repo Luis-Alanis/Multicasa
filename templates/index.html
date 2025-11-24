@@ -248,19 +248,19 @@
                     <img src="{{ url_for('static', filename='images/logotipo.png') }}" alt="Logo MultiCasa" class="logo-icon">
                 </div>
                 <div class="footer-nav">
-                    <a href="#">Inicio</a>
+                    <a href="{{ url_for('index') }}">Inicio</a>
                     <span class="bullet">:</span>
-                    <a href="#">Compra</a>
+                    <a href="{{ url_for('menu_bp.servicios') }}#servicio-compra">Compra</a>
                     <span class="bullet">:</span>
-                    <a href="#">Construir</a>
+                    <a href="{{ url_for('menu_bp.servicios') }}#servicio-construir">Construir</a>
                     <span class="bullet">:</span>
-                    <a href="#">Venta</a>
+                    <a href="{{ url_for('menu_bp.servicios') }}#servicio-venta">Venta</a>
                     <span class="bullet">:</span>
-                    <a href="#">Mudanzas</a>
+                    <a href="{{ url_for('menu_bp.servicios') }}#servicio-mudanzas">Mudanzas</a>
                     <span class="bullet">:</span>
-                    <a href="#">Seguros</a>
+                    <a href="{{ url_for('menu_bp.servicios') }}#servicio-seguros">Seguros</a>
                     <span class="bullet">:</span>
-                    <a href="/contactos">Contactos</a>
+                    <a href="{{ url_for('contacto_bp.contactos') }}">Contactos</a>
                 </div>
             </div>
             <div class="footer-info">

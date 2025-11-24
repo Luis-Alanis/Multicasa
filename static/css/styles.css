@@ -445,7 +445,26 @@ body {
 }
 
 .search-btn:hover {
-    background: linear-gradient(to bottom, #1a8cc4, #15689d 100%);
+    background: linear-gradient(to bottom, #1a8cc4 0%, #134563 100%);
+}
+
+.btn-limpiar {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(to bottom, #95a5a6 0%, #7f8c8d 100%);
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s;
+}
+
+.btn-limpiar:hover {
+    background: linear-gradient(to bottom, #7f8c8d 0%, #6c757d 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(127, 140, 141, 0.3);
 }
 
 /* Info Box */

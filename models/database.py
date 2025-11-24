@@ -1,23 +1,33 @@
-from mysql.connector import pooling
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker, scoped_session
 
-class Database:
-    _instance = None
+# Configuración de la base de datos
+DATABASE_URL = "mysql+pymysql://root:@localhost/casas"
 
-    def __new__(cls):
-        if cls._instance is None:
-            cls._instance = super(Database, cls).__new__(cls)
-            cls._instance._init_pool()
-        return cls._instance
+# Crear motor de base de datos
+engine = create_engine(
+    DATABASE_URL,
+    pool_size=5,
+    max_overflow=10,
+    pool_pre_ping=True,
+    echo=False  # Cambiar a True para ver las consultas SQL generadas
+)
 
-    def _init_pool(self):
-        self.pool = pooling.MySQLConnectionPool(
-            pool_name="mypool",
-            pool_size=5,
-            host="localhost",
-            user="root",
-            password="",
-            database="casas"
-        )
+# Crear sesión
+SessionLocal = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
 
-    def get_connection(self):
-        return self.pool.get_connection()
+# Base para modelos
+Base = declarative_base()
+
+def get_db():
+    """Obtener sesión de base de datos"""
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+def init_db():
+    """Inicializar base de datos (crear tablas si no existen)"""
+    Base.metadata.create_all(bind=engine)
