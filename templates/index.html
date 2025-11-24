@@ -30,7 +30,7 @@
         <!-- Navigation -->
         <nav class="nav">
             <a href="#inicio">Inicio</a>
-            <a href="#compania">La Compañía</a>
+            <a href="{{ url_for('menu_bp.compania') }}">La Compañía</a>
             <a href="#servicios">Servicios</a>
             <a href="#requisitos">Requisitos</a>
             <a href="/contactos">Contactos</a>
@@ -96,10 +96,10 @@
 
                 <!-- Links Section -->
                 <div class="links-section">
-                    <a href="#"><i class="fas fa-arrow-right"></i> Preguntas Frecuentes</a>
-                    <a href="#"><i class="fas fa-arrow-right"></i> Tips Para Antes De Comprar</a>
-                    <a href="#"><i class="fas fa-arrow-right"></i> Políticas De Calidad</a>
-                    <a href="#"><i class="fas fa-arrow-right"></i> ISO-9001-2012</a>
+                    <a href="{{ url_for('menu_bp.faq') }}"><i class="fas fa-arrow-right"></i> Preguntas Frecuentes</a>
+                    <a href="{{ url_for('menu_bp.tips') }}"><i class="fas fa-arrow-right"></i> Tips Para Antes De Comprar</a>
+                    <a href="{{ url_for('menu_bp.politicas_calidad') }}"><i class="fas fa-arrow-right"></i> Políticas De Calidad</a>
+                    <a href="{{ url_for('menu_bp.iso_9001') }}"><i class="fas fa-arrow-right"></i> ISO-9001-2012</a>
                 </div>
             </div>
 
@@ -168,17 +168,17 @@
                 <div class="info-box">
                     <h4>Información De Última Hora</h4>
                     <p>Nuevo Convenio A Casas Ecológicas.</p>
-                    <a href="#">Ver Más ...</a>
+                    <a href="{{ url_for('menu_bp.eco_casa') }}">Ver Más ...</a>
                 </div>
 
                 <div class="info-box">
                     <h4>Conoce Nuestros Planes De Respaldo Para Trabajadores Del ISSSTE</h4>
-                    <a href="#">Ver Más ...</a>
+                    <a href="{{ url_for('menu_bp.issste') }}">Ver Más ...</a>
                 </div>
 
                 <div class="info-box">
                     <h4>Entérate Como Puedes Pagar Tu Mensualidad Si Te Encuentras En El Extranjero.</h4>
-                    <a href="#">Ver Más ...</a>
+                    <a href="{{ url_for('menu_bp.pago_extranjero') }}">Ver Más ...</a>
                 </div>
 
                 <!-- Stats -->

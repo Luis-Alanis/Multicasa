@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Compañía - MultiCasa</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+<body>
+    <div class="container">
+        <!-- Menú de navegación -->
+        <nav class="nav">
+            <a href="{{ url_for('index') }}">Inicio</a>
+            <a href="{{ url_for('menu_bp.compania') }}">La Compañía</a>
+            <a href="{{ url_for('index') }}#servicios">Servicios</a>
+            <a href="{{ url_for('index') }}#requisitos">Requisitos</a>
+            <a href="{{ url_for('contacto_bp.contactos') }}">Contactos</a>
+        </nav>
+
+        <!-- Contenido principal -->
+        <div class="main-content">
+            <div class="content-area">
+                <div class="welcome">
+                    <h2>La Compañía</h2>
+                    <h3>Conoce nuestra misión, visión y valores</h3>
+
+                    <div class="services">
+                        <div class="service-item">
+                            <h2>Misión</h2>
+                            <p>
+                                En MultiCasa nos dedicamos a ofrecer soluciones inmobiliarias confiables y transparentes, 
+                                ayudando a nuestros clientes a encontrar el hogar ideal con seguridad y confianza.
+                            </p>
+                        </div>
+
+                        <div class="service-item">
+                            <h2>Visión</h2>
+                            <p>
+                                Ser la empresa líder en el sector inmobiliario, reconocida por la calidad de nuestro servicio, 
+                                innovación y compromiso con la satisfacción de nuestros clientes.
+                            </p>
+                        </div>
+
+                        <div class="service-item">
+                            <h2>Valores</h2>
+                            <ul>
+                                <li>Integridad y honestidad en todas nuestras acciones.</li>
+                                <li>Compromiso con la satisfacción del cliente.</li>
+                                <li>Innovación y mejora continua.</li>
+                                <li>Trabajo en equipo y respeto por las personas.</li>
+                                <li>Responsabilidad social y ambiental.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <div class="info-box">
+                    <h4>¿Tienes dudas sobre nuestros servicios?</h4>
+                    <p>Contacta con nuestro equipo de atención al cliente para más información.</p>
+                    <a href="{{ url_for('contacto_bp.contactos') }}">Contactar</a>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-logo">
+                <div class="logo-circle footer-size">
+                    <img src="{{ url_for('static', filename='images/logotipo.png') }}" alt="Logo MultiCasa" class="logo-icon">
+                </div>
+                <div class="footer-nav">
+                    <a href="{{ url_for('index') }}">Inicio</a>
+                    <span class="bullet">:</span>
+                    <a href="{{ url_for('index') }}#servicios">Servicios</a>
+                    <span class="bullet">:</span>
+                    <a href="{{ url_for('contacto_bp.contactos') }}">Contactos</a>
+                </div>
+            </div>
+            <div class="footer-info">
+                <p>Bienes Raíces MultiCasa © 2012</p>
+                <a href="#">RaiRaíces Del Emperador</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

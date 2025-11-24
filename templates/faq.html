@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Informativo - MultiCasa</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <style>
+        /* Contenedor del video responsivo con proporción cuadrada */
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* ancho máximo */
+            aspect-ratio: 1 / 1; /* cuadrado */
+            margin: 20px auto;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* recorta lo necesario manteniendo la vista */
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .video-container {
+                max-width: 90%; /* más ancho en móviles */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Menú de navegación -->
+        <nav class="nav">
+            <a href="{{ url_for('index') }}">Inicio</a>
+            <a href="{{ url_for('menu_bp.compania') }}">La Compañía</a>
+            <a href="{{ url_for('index') }}#servicios">Servicios</a>
+            <a href="{{ url_for('index') }}#requisitos">Requisitos</a>
+            <a href="{{ url_for('contacto_bp.contactos') }}">Contactos</a>
+        </nav>
+
+        <div class="main-content">
+            <div class="content-area">
+                <div class="welcome">
+                    <h2>Video Informativo</h2>
+                    <h3>Mira nuestro video explicativo</h3>
+
+                    <div class="video-container">
+                        <video controls>
+                            <!-- Reemplaza "nombre_del_video.mp4" con el nombre de tu archivo de video -->
+                            <source src="{{ url_for('static', filename='videos/nombre_del_video.mp4') }}" type="video/mp4">
+                            Tu navegador no soporta la reproducción de video.
+                        </video>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-logo">
+                <div class="logo-circle footer-size">
+                    <img src="{{ url_for('static', filename='images/logotipo.png') }}" alt="Logo MultiCasa" class="logo-icon">
+                </div>
+                <div class="footer-nav">
+                    <a href="{{ url_for('index') }}">Inicio</a>
+                    <span class="bullet">:</span>
+                    <a href="{{ url_for('index') }}#servicios">Servicios</a>
+                    <span class="bullet">:</span>
+                    <a href="{{ url_for('contacto_bp.contactos') }}">Contactos</a>
+                </div>
+            </div>
+            <div class="footer-info">
+                <p>Bienes Raíces MultiCasa © 2012</p>
+                <a href="#">RaiRaíces Del Emperador</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

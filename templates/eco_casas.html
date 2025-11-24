@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Convenio a Casas Ecológicas - MultiCasa</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+<body>
+    <div class="container">
+        <!-- Menú de navegación -->
+        <nav class="nav">
+            <a href="{{ url_for('index') }}">Inicio</a>
+            <a href="{{ url_for('menu_bp.compania') }}">La Compañía</a>
+            <a href="{{ url_for('index') }}#servicios">Servicios</a>
+            <a href="{{ url_for('index') }}#requisitos">Requisitos</a>
+            <a href="{{ url_for('contacto_bp.contactos') }}">Contactos</a>
+        </nav>
+
+        <div class="main-content">
+            <div class="content-area">
+                <div class="welcome">
+                    <h2>Nuevo Convenio a Casas Ecológicas</h2>
+                    <h3>Apoyando viviendas sostenibles y amigables con el medio ambiente</h3>
+
+                    <p>
+                        MultiCasa se enorgullece en anunciar un nuevo convenio enfocado en la promoción de casas ecológicas.
+                        Este acuerdo tiene como objetivo fomentar la construcción y adquisición de viviendas sostenibles,
+                        utilizando materiales amigables con el medio ambiente y sistemas de ahorro energético.
+                    </p>
+
+                    <p>
+                        A través de este convenio, nuestros clientes podrán acceder a beneficios exclusivos, asesoría especializada
+                        y planes de financiamiento adaptados para viviendas ecológicas. Queremos que cada hogar contribuya
+                        al cuidado del planeta sin sacrificar confort ni seguridad.
+                    </p>
+
+                    <p>
+                        Para más información sobre las casas ecológicas y cómo aprovechar los beneficios de este convenio,
+                        contáctanos o visita nuestra oficina para recibir atención personalizada de nuestros asesores.
+                    </p>
+                    <div class="preview-images" style="margin-top:20px;">
+                        <div class="preview-stack">
+                            <img src="{{ url_for('static', filename='images/eco-casas.jpg') }}" alt="Casas Ecológicas">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <div class="info-box">
+                    <h4>Consejo</h4>
+                    <p>Infórmate sobre las ventajas de los materiales ecológicos y su impacto a largo plazo en tu hogar.</p>
+                </div>
+                <div class="stats">
+                    <p><i class="fas fa-chart-bar"></i> Conectados: 674<br><i class="fas fa-eye"></i> Visitas:</p>
+                    <div class="counter">
+                        <span>0</span><span>7</span><span>8</span><span>9</span><span>9</span>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-logo">
+                <div class="logo-circle footer-size">
+                    <img src="{{ url_for('static', filename='images/logotipo.png') }}" alt="Logo MultiCasa" class="logo-icon">
+                </div>
+                <div class="footer-nav">
+                    <a href="{{ url_for('index') }}">Inicio</a>
+                    <span class="bullet">:</span>
+                    <a href="{{ url_for('index') }}#servicios">Servicios</a>
+                    <span class="bullet">:</span>
+                    <a href="{{ url_for('contacto_bp.contactos') }}">Contactos</a>
+                </div>
+            </div>
+            <div class="footer-info">
+                <p>Bienes Raíces MultiCasa © 2012</p>
+                <a href="#">RaiRaíces Del Emperador</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

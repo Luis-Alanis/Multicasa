@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISO-9001-2012 - MultiCasa</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+<body>
+    <div class="container">
+        <!-- Menú de navegación -->
+        <nav class="nav">
+            <a href="{{ url_for('index') }}">Inicio</a>
+            <a href="{{ url_for('menu_bp.compania') }}">La Compañía</a>
+            <a href="{{ url_for('index') }}#servicios">Servicios</a>
+            <a href="{{ url_for('index') }}#requisitos">Requisitos</a>
+            <a href="{{ url_for('contacto_bp.contactos') }}">Contactos</a>
+        </nav>
+
+        <div class="main-content">
+            <div class="content-area">
+                <div class="welcome">
+                    <h2>ISO-9001-2012</h2>
+                    <h3>Compromiso con la calidad y la mejora continua</h3>
+
+                    <p>
+                        La norma ISO 9001:2012 establece los requisitos para un sistema de gestión de calidad
+                        en una organización. Su objetivo principal es garantizar que los productos y servicios
+                        ofrecidos cumplan con las expectativas de los clientes y los estándares internacionales.
+                    </p>
+
+                    <p>
+                        MultiCasa se encuentra comprometida con la implementación de esta norma, asegurando
+                        procesos eficientes, atención al cliente de calidad y mejora continua en todos los aspectos
+                        de la empresa. Esto nos permite brindar un servicio confiable, seguro y transparente
+                        a nuestros clientes.
+                    </p>
+
+                    <p>
+                        Gracias a la certificación ISO-9001-2012, nuestros clientes pueden tener la seguridad
+                        de que cada transacción y cada propiedad que ofrecemos cumple con altos estándares de calidad
+                        y buenas prácticas en el sector inmobiliario.
+                    </p>
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <div class="info-box">
+                    <h4>Consejo</h4>
+                    <p>Verifica siempre que los proveedores y empresas cuenten con certificaciones de calidad reconocidas.</p>
+                </div>
+                <div class="stats">
+                    <p><i class="fas fa-chart-bar"></i> Conectados: 674<br><i class="fas fa-eye"></i> Visitas:</p>
+                    <div class="counter">
+                        <span>0</span><span>7</span><span>8</span><span>9</span><span>9</span>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-logo">
+                <div class="logo-circle footer-size">
+                    <img src="{{ url_for('static', filename='images/logotipo.png') }}" alt="Logo MultiCasa" class="logo-icon">
+                </div>
+                <div class="footer-nav">
+                    <a href="{{ url_for('index') }}">Inicio</a>
+                    <span class="bullet">:</span>
+                    <a href="{{ url_for('index') }}#servicios">Servicios</a>
+                    <span class="bullet">:</span>
+                    <a href="{{ url_for('contacto_bp.contactos') }}">Contactos</a>
+                </div>
+            </div>
+            <div class="footer-info">
+                <p>Bienes Raíces MultiCasa © 2012</p>
+                <a href="#">RaiRaíces Del Emperador</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

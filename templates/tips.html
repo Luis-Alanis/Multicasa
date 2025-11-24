@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tips Para Antes De Comprar - MultiCasa</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+<body>
+    <div class="container">
+
+        <!-- Menú de navegación -->
+        <nav class="nav">
+            <a href="{{ url_for('index') }}">Inicio</a>
+            <a href="{{ url_for('menu_bp.compania') }}">La Compañía</a>
+            <a href="{{ url_for('index') }}#servicios">Servicios</a>
+            <a href="{{ url_for('index') }}#requisitos">Requisitos</a>
+            <a href="{{ url_for('contacto_bp.contactos') }}">Contactos</a>
+        </nav>
+
+        <div class="main-content">
+            <div class="content-area">
+                <div class="welcome">
+                    <h2>Tips Para Antes De Comprar</h2>
+                    <h3>Recomendaciones importantes para una compra segura</h3>
+
+                    <p>
+                        Comprar una propiedad es una decisión importante. Antes de tomar cualquier decisión,
+                        es esencial informarse y planear cuidadosamente para evitar problemas futuros.
+                    </p>
+                    <br>
+
+                    <p>
+                        A continuación, te presentamos algunos tips clave:
+                    </p>
+                    <ul>
+                        <li>Verifica la documentación legal de la propiedad, incluyendo escrituras y pagos de impuestos.</li>
+                        <li>Revisa el estado físico de la vivienda, instalaciones eléctricas, plomería y acabados.</li>
+                        <li>Conoce la ubicación y los servicios cercanos, como transporte, escuelas y hospitales.</li>
+                        <li>Define tu presupuesto y considera gastos adicionales como mantenimiento y seguros.</li>
+                        <li>Consulta con un asesor inmobiliario de confianza para recibir orientación profesional.</li>
+                    </ul>
+                    <br>
+
+                    <p>
+                        Siguiendo estos consejos, podrás tomar una decisión más informada y segura al momento
+                        de adquirir tu nueva propiedad.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-logo">
+                <div class="logo-circle footer-size">
+                    <img src="{{ url_for('static', filename='images/logotipo.png') }}" alt="Logo MultiCasa" class="logo-icon">
+                </div>
+                <div class="footer-nav">
+                    <a href="{{ url_for('index') }}">Inicio</a>
+                    <span class="bullet">:</span>
+                    <a href="{{ url_for('index') }}#servicios">Servicios</a>
+                    <span class="bullet">:</span>
+                    <a href="{{ url_for('contacto_bp.contactos') }}">Contactos</a>
+                </div>
+            </div>
+            <div class="footer-info">
+                <p>Bienes Raíces MultiCasa © 2012</p>
+                <a href="#">RaiRaíces Del Emperador</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
