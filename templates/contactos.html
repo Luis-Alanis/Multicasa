@@ -30,9 +30,9 @@
         <!-- Navigation -->
         <nav class="nav">
             <a href="{{ url_for('index') }}">Inicio</a>
-            <a href="{{ url_for('index') }}#compania">La Compañía</a>
-            <a href="{{ url_for('index') }}#servicios">Servicios</a>
-            <a href="{{ url_for('index') }}#requisitos">Requisitos</a>
+            <a href="{{ url_for('menu_bp.compania') }}">La Compañía</a>
+            <a href="{{ url_for('menu_bp.servicios') }}">Servicios</a>
+            <a href="{{ url_for('menu_bp.requisitos') }}">Requisitos</a>
             <a href="{{ url_for('contacto_bp.contactos') }}">Contactos</a>
         </nav>
 
@@ -149,11 +149,11 @@
             <!-- Sidebar -->
             <aside class="sidebar">
                 <ul class="sidebar-menu">
-                    <li><a href="#">COMPRA</a></li>
-                    <li><a href="#">CONSTRUIR</a></li>
-                    <li><a href="#">VENTA</a></li>
-                    <li><a href="#">MUDANZAS</a></li>
-                    <li><a href="#">SEGUROS</a></li>
+                    <li><a href="{{ url_for('menu_bp.servicios') }}#servicio-compra">COMPRA</a></li>
+                    <li><a href="{{ url_for('menu_bp.servicios') }}#servicio-construir">CONSTRUIR</a></li>
+                    <li><a href="{{ url_for('menu_bp.servicios') }}#servicio-venta">VENTA</a></li>
+                    <li><a href="{{ url_for('menu_bp.servicios') }}#servicio-mudanzas">MUDANZAS</a></li>
+                    <li><a href="{{ url_for('menu_bp.servicios') }}#servicio-seguros">SEGUROS</a></li>
                     <li><a href="{{ url_for('contacto_bp.contactos') }}">CONTACTOS</a></li>
                 </ul>
 

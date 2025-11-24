@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestros Servicios - MultiCasa</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+<body>
+    <div class="container">
+        <!-- Menú de navegación -->
+        <nav class="nav">
+            <a href="{{ url_for('index') }}">Inicio</a>
+            <a href="{{ url_for('menu_bp.compania') }}">La Compañía</a>
+            <a href="{{ url_for('menu_bp.servicios') }}">Servicios</a>
+            <a href="{{ url_for('menu_bp.requisitos') }}">Requisitos</a>
+            <a href="{{ url_for('contacto_bp.contactos') }}">Contactos</a>
+        </nav>
+
+        <!-- Contenido principal -->
+        <div class="main-content">
+            <div class="content-area">
+                <div class="welcome" id="servicios">
+                    <h2>NUESTROS SERVICIOS</h2>
+                    <h3>Soluciones integrales para todas tus necesidades inmobiliarias</h3>
+
+                    <div class="services">
+                        <!-- COMPRA -->
+                        <div class="service-item" id="servicio-compra">
+                            <h3><i class="fas fa-home"></i> Compra</h3>
+                            <p>
+                                En MultiCasa te ayudamos a encontrar la propiedad ideal que se ajuste a tus necesidades 
+                                y presupuesto. Contamos con un amplio catálogo de casas en diferentes ubicaciones, 
+                                desde opciones económicas hasta residencias de lujo.
+                            </p>
+                            <p>
+                                Nuestros asesores especializados te acompañan en todo el proceso: desde la búsqueda 
+                                inicial, pasando por la tramitación de créditos (INFONAVIT, FOVISSSTE o bancarios), 
+                                hasta la firma de escrituras y entrega de llaves.
+                            </p>
+                            <p>
+                                <strong>Beneficios:</strong>
+                            </p>
+                            <ul style="line-height: 1.8; padding-left: 20px;">
+                                <li>Asesoría personalizada sin costo</li>
+                                <li>Amplio catálogo de propiedades verificadas</li>
+                                <li>Apoyo en trámites de crédito</li>
+                                <li>Transparencia en documentación</li>
+                                <li>Acompañamiento hasta la entrega</li>
+                            </ul>
+                            <a href="{{ url_for('menu_bp.buscar') }}" 
+                               style="display: inline-block; margin-top: 15px; padding: 10px 20px; 
+                                      background: linear-gradient(to bottom, #2a9fd6 0%, #1a8cc4 100%); 
+                                      color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
+                                <i class="fas fa-search"></i> Buscar Propiedades
+                            </a>
+                        </div>
+
+                        <!-- CONSTRUIR -->
+                        <div class="service-item" id="servicio-construir">
+                            <h3><i class="fas fa-tools"></i> Construir</h3>
+                            <p>
+                                ¿Tienes un terreno y quieres construir la casa de tus sueños? En MultiCasa te asesoramos 
+                                en todo el proceso de construcción, desde la planeación y diseño hasta la supervisión de obra.
+                            </p>
+                            <p>
+                                Trabajamos con constructoras certificadas y arquitectos profesionales que garantizan 
+                                la calidad y cumplimiento de las normativas vigentes. Te ayudamos a optimizar tu 
+                                presupuesto sin sacrificar calidad.
+                            </p>
+                            <p>
+                                <strong>Servicios incluidos:</strong>
+                            </p>
+                            <ul style="line-height: 1.8; padding-left: 20px;">
+                                <li>Análisis de viabilidad del proyecto</li>
+                                <li>Diseño arquitectónico personalizado</li>
+                                <li>Cálculo y cotización de materiales</li>
+                                <li>Supervisión de obra</li>
+                                <li>Gestión de permisos y licencias</li>
+                                <li>Financiamiento para construcción</li>
+                            </ul>
+                        </div>
+
+                        <!-- VENTA -->
+                        <div class="service-item" id="servicio-venta">
+                            <h3><i class="fas fa-hand-holding-usd"></i> Venta</h3>
+                            <p>
+                                Si deseas vender tu propiedad, en MultiCasa te ofrecemos un servicio profesional 
+                                para conseguir la mejor oferta en el menor tiempo posible. Nos encargamos de todo 
+                                el proceso comercial y legal.
+                            </p>
+                            <p>
+                                Realizamos evaluaciones de mercado para determinar el precio justo de tu propiedad, 
+                                gestionamos la publicidad en múltiples canales y calificamos a los compradores interesados.
+                            </p>
+                            <p>
+                                <strong>Lo que hacemos por ti:</strong>
+                            </p>
+                            <ul style="line-height: 1.8; padding-left: 20px;">
+                                <li>Valuación profesional de tu propiedad</li>
+                                <li>Fotografía y promoción digital</li>
+                                <li>Filtrado de compradores serios</li>
+                                <li>Coordinación de visitas</li>
+                                <li>Negociación y cierre de venta</li>
+                                <li>Asesoría legal y notarial</li>
+                            </ul>
+                            <a href="{{ url_for('contacto_bp.contactos') }}" 
+                               style="display: inline-block; margin-top: 15px; padding: 10px 20px; 
+                                      background: linear-gradient(to bottom, #28a745 0%, #218838 100%); 
+                                      color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
+                                <i class="fas fa-paper-plane"></i> Vender mi Propiedad
+                            </a>
+                        </div>
+
+                        <!-- MUDANZAS -->
+                        <div class="service-item" id="servicio-mudanzas">
+                            <h3><i class="fas fa-truck-moving"></i> Mudanzas</h3>
+                            <p>
+                                Sabemos que mudarse puede ser estresante, por eso hemos establecido convenios con 
+                                empresas especializadas en mudanzas para ofrecerte un servicio seguro, rápido y económico.
+                            </p>
+                            <p>
+                                Ya sea una mudanza local o de larga distancia, nuestros aliados cuentan con personal 
+                                capacitado, equipo especializado y seguros que protegen tus pertenencias durante todo el traslado.
+                            </p>
+                            <p>
+                                <strong>Servicios de mudanza:</strong>
+                            </p>
+                            <ul style="line-height: 1.8; padding-left: 20px;">
+                                <li>Empaque y embalaje profesional</li>
+                                <li>Desmontaje y montaje de muebles</li>
+                                <li>Transporte seguro y rastreable</li>
+                                <li>Seguro de carga incluido</li>
+                                <li>Mudanzas locales y foráneas</li>
+                                <li>Descuentos especiales para clientes MultiCasa</li>
+                            </ul>
+                        </div>
+
+                        <!-- SEGUROS -->
+                        <div class="service-item" id="servicio-seguros">
+                            <h3><i class="fas fa-shield-alt"></i> Seguros</h3>
+                            <p>
+                                Protege tu patrimonio con los seguros de vivienda que ofrecemos en alianza con las 
+                                principales aseguradoras del país. Contamos con planes accesibles que se adaptan a 
+                                diferentes necesidades y presupuestos.
+                            </p>
+                            <p>
+                                Un seguro de vivienda no solo protege tu casa ante desastres naturales, robos o 
+                                accidentes, sino que también te brinda tranquilidad y respaldo económico para ti y tu familia.
+                            </p>
+                            <p>
+                                <strong>Coberturas disponibles:</strong>
+                            </p>
+                            <ul style="line-height: 1.8; padding-left: 20px;">
+                                <li>Daños por incendio y explosión</li>
+                                <li>Robo con violencia</li>
+                                <li>Fenómenos naturales (temblores, inundaciones, huracanes)</li>
+                                <li>Daños por agua y fallas eléctricas</li>
+                                <li>Responsabilidad civil</li>
+                                <li>Gastos de hospedaje temporal</li>
+                                <li>Asistencia legal y emergencias 24/7</li>
+                            </ul>
+                            <a href="{{ url_for('contacto_bp.contactos') }}" 
+                               style="display: inline-block; margin-top: 15px; padding: 10px 20px; 
+                                      background: linear-gradient(to bottom, #2a9fd6 0%, #1a8cc4 100%); 
+                                      color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
+                                <i class="fas fa-file-alt"></i> Solicitar Cotización
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Call to Action -->
+                    <div style="text-align: center; margin-top: 40px; padding: 30px; background: #f5f9fc; border-radius: 8px; border: 2px solid #2a9fd6;">
+                        <h3 style="color: #134563; margin-bottom: 15px;">
+                            <i class="fas fa-headset"></i> ¿Necesitas más información?
+                        </h3>
+                        <p style="margin-bottom: 20px; color: #666; font-size: 16px;">
+                            Nuestro equipo de expertos está listo para asesorarte en cualquiera de nuestros servicios
+                        </p>
+                        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                            <a href="{{ url_for('contacto_bp.contactos') }}" 
+                               style="display: inline-block; padding: 12px 30px; background: linear-gradient(to bottom, #2a9fd6 0%, #1a8cc4 100%); 
+                                      color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: all 0.3s;">
+                                <i class="fas fa-envelope"></i> Contáctanos
+                            </a>
+                            <a href="tel:1-800-123-4567" 
+                               style="display: inline-block; padding: 12px 30px; background: linear-gradient(to bottom, #28a745 0%, #218838 100%); 
+                                      color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: all 0.3s;">
+                                <i class="fas fa-phone"></i> Llámanos
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="info-box">
+                    <h4>Atención Personalizada</h4>
+                    <p>Agenda una cita con nuestros asesores para obtener información detallada sobre cualquier servicio.</p>
+                    <a href="{{ url_for('contacto_bp.contactos') }}">Agendar Cita</a>
+                </div>
+
+                <div class="info-box">
+                    <h4>Horarios de Atención</h4>
+                    <p><i class="fas fa-clock"></i> Lun - Vie: 9:00 AM - 6:00 PM</p>
+                    <p><i class="fas fa-clock"></i> Sáb: 9:00 AM - 2:00 PM</p>
+                </div>
+
+                <div class="info-box">
+                    <h4>Información</h4>
+                    <p><i class="fas fa-phone"></i> 1-800-123-4567</p>
+                    <p><i class="fas fa-envelope"></i> multicasa@gmail.com</p>
+                </div>
+
+                <div class="stats">
+                    <p><i class="fas fa-chart-bar"></i> Conectados: 674<br><i class="fas fa-eye"></i> Visitas:</p>
+                    <div class="counter">
+                        <span>0</span><span>7</span><span>8</span><span>9</span><span>9</span>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-logo">
+                <div class="logo-circle footer-size">
+                    <img src="{{ url_for('static', filename='images/logotipo.png') }}" alt="Logo MultiCasa" class="logo-icon">
+                </div>
+                <div class="footer-nav">
+                    <a href="{{ url_for('index') }}">Inicio</a>
+                    <span class="bullet">:</span>
+                    <a href="{{ url_for('menu_bp.servicios') }}">Servicios</a>
+                    <span class="bullet">:</span>
+                    <a href="{{ url_for('contacto_bp.contactos') }}">Contactos</a>
+                </div>
+            </div>
+            <div class="footer-info">
+                <p>Bienes Raíces MultiCasa © 2012</p>
+                <a href="#">RaiRaíces Del Emperador</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../static/js/scripts.js"></script>
+</body>
+</html>

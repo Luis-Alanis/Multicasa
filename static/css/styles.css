@@ -1649,3 +1649,13 @@ body {
         width: calc(100% - 20px);
     }
 }
+
+/* Scroll suave para anclas */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Ajuste para que las secciones con ID no queden ocultas bajo el navbar */
+.service-item[id] {
+    scroll-margin-top: 20px;
+}

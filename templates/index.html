@@ -31,8 +31,8 @@
         <nav class="nav">
             <a href="#inicio">Inicio</a>
             <a href="{{ url_for('menu_bp.compania') }}">La Compañía</a>
-            <a href="#servicios">Servicios</a>
-            <a href="#requisitos">Requisitos</a>
+            <a href="{{ url_for('menu_bp.servicios') }}">Servicios</a>
+            <a href="{{ url_for('menu_bp.requisitos') }}">Requisitos</a>
             <a href="/contactos">Contactos</a>
         </nav>
 
@@ -70,11 +70,27 @@
                             <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=180&h=130&fit=crop" alt="Preview 2">
                         </div>
                         <div class="welcome-text">
-                            <p>Hello. In this tutorial i will show you how to create an elegant WordPress PSD theme. You can use this web template also for consulting agency templates, services websites, marketing website templates, business website templates, finance website templates. The design is very clean and can be modified very easy into a great template.</p>
+                            <p>
+                                En <strong>Bienes Raíces MultiCasa</strong> nos especializamos en hacer realidad el sueño 
+                                de tu hogar. Somos una empresa líder en el sector inmobiliario con años de experiencia 
+                                ayudando a familias a encontrar la propiedad perfecta que se ajuste a sus necesidades 
+                                y presupuesto.
+                            </p>
+                            <p>
+                                Ofrecemos un servicio integral que incluye asesoría personalizada, tramitación de créditos 
+                                hipotecarios (INFONAVIT, FOVISSSTE y bancarios), servicios de construcción, venta de 
+                                propiedades, mudanzas y seguros. Nuestro compromiso es brindarte transparencia, 
+                                confianza y acompañamiento en cada paso del proceso.
+                            </p>
                         </div>
                     </div>
 
-                    <p>Hello. In this tutorial i will show you how to create an elegant WordPress PSD theme. You can use this web template also for consulting agency templates, services websites, marketing website templates, business website templates, finance website templates. The design is very clean and can be modified very easy into a great template..</p>
+                    <p>
+                        Con un amplio catálogo de propiedades en diferentes ubicaciones y rangos de precio, 
+                        te garantizamos encontrar la casa ideal para ti y tu familia. Nuestro equipo de asesores 
+                        especializados está disponible para atenderte y resolver todas tus dudas. 
+                        <strong>¡Déjanos ayudarte a construir tu futuro!</strong>
+                    </p>
                 </div>
 
                 <!-- Services Section -->
@@ -82,15 +98,45 @@
                     <h2>SERVICIOS DESTACADOS</h2>
                     
                     <div class="service-item">
-                        <p>Hello. In this tutorial i will show you how to create an elegant WordPress PSD theme. You can use this web template also for consulting agency templates, services websites, marketing website templates, business website templates, finance website templates. The design is very clean and can be modified very easy into a great template.. <a href="#"><i class="fas fa-arrow-right"></i> Ver Más...</a></p>
+                        <h3>Compra tu Casa Ideal</h3>
+                        <p>
+                            En MultiCasa te ayudamos a encontrar la propiedad perfecta que se ajuste a tus necesidades 
+                            y presupuesto. Contamos con un amplio catálogo de casas en diferentes ubicaciones y nuestros 
+                            asesores especializados te acompañan en todo el proceso, desde la búsqueda hasta la entrega 
+                            de llaves. Te apoyamos en la tramitación de créditos INFONAVIT, FOVISSSTE o bancarios para 
+                            que hacer realidad el sueño de tu hogar sea más fácil.
+                            <a href="{{ url_for('menu_bp.servicios') }}#servicio-compra">
+                                <i class="fas fa-arrow-right"></i> Ver Más...
+                            </a>
+                        </p>
                     </div>
 
                     <div class="service-item">
-                        <p>Hello. In this tutorial i will show you how to create an elegant WordPress PSD theme. You can use this web template also for consulting agency templates, services websites, marketing website templates, business website templates, finance website templates. The design is very clean and can be modified very easy into a great template.. <a href="#"><i class="fas fa-arrow-right"></i> Ver Más...</a></p>
+                        <h3>Vende tu Propiedad</h3>
+                        <p>
+                            ¿Quieres vender tu casa? En MultiCasa te ofrecemos un servicio profesional para conseguir 
+                            la mejor oferta en el menor tiempo posible. Realizamos valuación profesional, fotografía 
+                            de calidad y promoción en múltiples canales digitales. Nos encargamos de filtrar compradores 
+                            serios, coordinar visitas y gestionar toda la documentación legal necesaria para que tu venta 
+                            sea exitosa y sin complicaciones.
+                            <a href="{{ url_for('menu_bp.servicios') }}#servicio-venta">
+                                <i class="fas fa-arrow-right"></i> Ver Más...
+                            </a>
+                        </p>
                     </div>
 
                     <div class="service-item">
-                        <p>Hello. In this tutorial i will show you how to create an elegant WordPress PSD theme. You can use this web template also for consulting agency templates, services websites, marketing website templates, business website templates, finance website templates. The design is very clean and can be modified very easy into a great template.. <a href="#"><i class="fas fa-arrow-right"></i> Ver Más...</a></p>
+                        <h3>Servicio de Mudanzas</h3>
+                        <p>
+                            Mudarse no tiene que ser estresante. Hemos establecido convenios con empresas especializadas 
+                            en mudanzas para ofrecerte un servicio seguro, rápido y económico. Nuestros aliados cuentan 
+                            con personal capacitado, equipo especializado y seguros que protegen tus pertenencias. 
+                            Ofrecemos empaque profesional, desmontaje y montaje de muebles, transporte seguro tanto 
+                            para mudanzas locales como foráneas, con descuentos especiales para clientes MultiCasa.
+                            <a href="{{ url_for('menu_bp.servicios') }}#servicio-mudanzas">
+                                <i class="fas fa-arrow-right"></i> Ver Más...
+                            </a>
+                        </p>
                     </div>
                 </div>
 
@@ -106,11 +152,11 @@
             <!-- Sidebar -->
             <aside class="sidebar">
                 <ul class="sidebar-menu">
-                    <li><a href="#">COMPRA</a></li>
-                    <li><a href="#">CONSTRUIR</a></li>
-                    <li><a href="#">VENTA</a></li>
-                    <li><a href="#">MUDANZAS</a></li>
-                    <li><a href="#">SEGUROS</a></li>
+                    <li><a href="{{ url_for('menu_bp.servicios') }}#servicio-compra">COMPRA</a></li>
+                    <li><a href="{{ url_for('menu_bp.servicios') }}#servicio-construir">CONSTRUIR</a></li>
+                    <li><a href="{{ url_for('menu_bp.servicios') }}#servicio-venta">VENTA</a></li>
+                    <li><a href="{{ url_for('menu_bp.servicios') }}#servicio-mudanzas">MUDANZAS</a></li>
+                    <li><a href="{{ url_for('menu_bp.servicios') }}#servicio-seguros">SEGUROS</a></li>
                     <li><a href="/contactos">CONTACTOS</a></li>
                 </ul>
 

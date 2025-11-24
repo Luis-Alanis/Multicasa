@@ -37,3 +37,11 @@ def tips():
 @menu_bp.route('/faq')
 def faq():
     return render_template('faq.html', resultados=[])
+
+@menu_bp.route('/requisitos')
+def requisitos():
+    return render_template('requisitos.html')
+
+@menu_bp.route('/servicios')
+def servicios():
+    return render_template('servicios.html')

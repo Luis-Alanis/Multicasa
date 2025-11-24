@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requisitos para Comprar - MultiCasa</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+<body>
+    <div class="container">
+        <!-- Menú de navegación -->
+        <nav class="nav">
+            <a href="{{ url_for('index') }}">Inicio</a>
+            <a href="{{ url_for('menu_bp.compania') }}">La Compañía</a>
+            <a href="{{ url_for('menu_bp.servicios') }}">Servicios</a>
+            <a href="{{ url_for('menu_bp.requisitos') }}">Requisitos</a>
+            <a href="{{ url_for('contacto_bp.contactos') }}">Contactos</a>
+        </nav>
+
+        <!-- Contenido principal -->
+        <div class="main-content">
+            <div class="content-area">
+                <div class="welcome" id="requisitos">
+                    <h2>REQUISITOS PARA COMPRAR</h2>
+                    <h3>Todo lo que necesitas saber antes de adquirir tu propiedad</h3>
+
+                    <div class="services">
+                        <div class="service-item">
+                            <h3><i class="fas fa-file-alt"></i> Documentos Personales</h3>
+                            <ul style="line-height: 2; padding-left: 20px;">
+                                <li>Identificación oficial vigente (INE/IFE o Pasaporte)</li>
+                                <li>CURP</li>
+                                <li>RFC</li>
+                                <li>Acta de nacimiento</li>
+                                <li>Comprobante de domicilio (no mayor a 3 meses)</li>
+                                <li>Estado de cuenta bancario reciente</li>
+                            </ul>
+                        </div>
+
+                        <div class="service-item">
+                            <h3><i class="fas fa-briefcase"></i> Comprobantes Laborales</h3>
+                            <ul style="line-height: 2; padding-left: 20px;">
+                                <li>Constancia de trabajo o carta de empleo</li>
+                                <li>Recibos de nómina (últimos 3 meses)</li>
+                                <li>Declaración de impuestos (en caso de ser independiente)</li>
+                                <li>Estados de cuenta que demuestren ingresos</li>
+                                <li>Referencias laborales</li>
+                            </ul>
+                        </div>
+
+                        <div class="service-item">
+                            <h3><i class="fas fa-dollar-sign"></i> Requisitos Financieros</h3>
+                            <ul style="line-height: 2; padding-left: 20px;">
+                                <li>Enganche mínimo (generalmente del 10% al 20%)</li>
+                                <li>Gastos notariales y de escrituración</li>
+                                <li>Avalúo de la propiedad</li>
+                                <li>Seguro de vida y de daños</li>
+                                <li>Historial crediticio favorable</li>
+                                <li>Capacidad de pago demostrable</li>
+                            </ul>
+                        </div>
+
+                        <div class="service-item">
+                            <h3><i class="fas fa-home"></i> Requisitos Específicos por Tipo de Crédito</h3>
+                            <p><strong>INFONAVIT:</strong></p>
+                            <ul style="line-height: 2; padding-left: 20px; margin-bottom: 15px;">
+                                <li>Contar con al menos 116 puntos</li>
+                                <li>Relación laboral vigente</li>
+                                <li>Subcuenta de vivienda activa</li>
+                            </ul>
+
+                            <p><strong>FOVISSSTE:</strong></p>
+                            <ul style="line-height: 2; padding-left: 20px; margin-bottom: 15px;">
+                                <li>Ser trabajador del Estado</li>
+                                <li>Tener al menos 18 meses de cotización</li>
+                                <li>No haber ejercido un crédito anterior</li>
+                            </ul>
+
+                            <p><strong>Crédito Bancario:</strong></p>
+                            <ul style="line-height: 2; padding-left: 20px;">
+                                <li>Antigüedad laboral mínima (1-2 años)</li>
+                                <li>Buen historial crediticio</li>
+                                <li>Relación deuda/ingreso favorable</li>
+                            </ul>
+                        </div>
+
+                        <div class="service-item">
+                            <h3><i class="fas fa-check-circle"></i> Proceso de Compra</h3>
+                            <ol style="line-height: 2; padding-left: 20px;">
+                                <li><strong>Pre-aprobación:</strong> Solicita tu pre-aprobación de crédito</li>
+                                <li><strong>Búsqueda:</strong> Encuentra la propiedad ideal</li>
+                                <li><strong>Oferta:</strong> Presenta una oferta formal</li>
+                                <li><strong>Avalúo:</strong> Se realiza el avalúo de la propiedad</li>
+                                <li><strong>Aprobación:</strong> El crédito es aprobado definitivamente</li>
+                                <li><strong>Firma:</strong> Firma de escrituras ante notario</li>
+                                <li><strong>Entrega:</strong> Recepción de las llaves de tu nuevo hogar</li>
+                            </ol>
+                        </div>
+
+                        <div class="service-item" style="background: #f5f9fc; padding: 20px; border-left: 4px solid #2a9fd6;">
+                            <h3><i class="fas fa-lightbulb"></i> Consejos Importantes</h3>
+                            <ul style="line-height: 2; padding-left: 20px;">
+                                <li>Verifica tu capacidad de pago antes de solicitar el crédito</li>
+                                <li>Compara diferentes opciones de crédito disponibles</li>
+                                <li>Lee cuidadosamente el contrato antes de firmar</li>
+                                <li>Asegúrate de que la propiedad esté libre de gravámenes</li>
+                                <li>Considera los costos adicionales (mantenimiento, servicios, etc.)</li>
+                                <li>Solicita asesoría legal si tienes dudas</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 30px; padding: 20px; background: #e8f4f8; border-radius: 5px;">
+                        <h3 style="color: #134563; margin-bottom: 15px;">
+                            <i class="fas fa-phone"></i> ¿Tienes dudas sobre los requisitos?
+                        </h3>
+                        <p style="margin-bottom: 20px; color: #666;">
+                            Nuestros asesores están listos para ayudarte en todo el proceso
+                        </p>
+                        <a href="{{ url_for('contacto_bp.contactos') }}" 
+                           style="display: inline-block; padding: 12px 30px; background: linear-gradient(to bottom, #2a9fd6 0%, #1a8cc4 100%); 
+                                  color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: all 0.3s;">
+                            <i class="fas fa-envelope"></i> Contactar Ahora
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="info-box">
+                    <h4>¿Necesitas ayuda?</h4>
+                    <p>Agenda una cita con nuestros asesores para revisar tu caso específico.</p>
+                    <a href="{{ url_for('contacto_bp.contactos') }}">Agendar Cita</a>
+                </div>
+
+                <div class="info-box">
+                    <h4>Calculadora de Crédito</h4>
+                    <p>Calcula tu capacidad de compra y mensualidades aproximadas.</p>
+                </div>
+
+                <div class="stats">
+                    <p><i class="fas fa-chart-bar"></i> Conectados: 674<br><i class="fas fa-eye"></i> Visitas:</p>
+                    <div class="counter">
+                        <span>0</span><span>7</span><span>8</span><span>9</span><span>9</span>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-logo">
+                <div class="logo-circle footer-size">
+                    <img src="{{ url_for('static', filename='images/logotipo.png') }}" alt="Logo MultiCasa" class="logo-icon">
+                </div>
+                <div class="footer-nav">
+                    <a href="{{ url_for('index') }}">Inicio</a>
+                    <span class="bullet">:</span>
+                    <a href="{{ url_for('index') }}#servicios">Servicios</a>
+                    <span class="bullet">:</span>
+                    <a href="{{ url_for('contacto_bp.contactos') }}">Contactos</a>
+                </div>
+            </div>
+            <div class="footer-info">
+                <p>Bienes Raíces MultiCasa © 2012</p>
+                <a href="#">RaiRaíces Del Emperador</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../static/js/scripts.js"></script>
+</body>
+</html>
