@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, jsonify, flash, redirect
+from flask import Blueprint, render_template, request, jsonify, flash, redirect, url_for
 from models.casa_model import Casa
 import json
 

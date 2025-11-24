@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session, flash, jsonify
+from flask import Blueprint, json, render_template, request, redirect, url_for, session, flash, jsonify
 from models.admin_model import Admin
 from models.casa_model import Casa
 from models.locacion_model import Locacion
@@ -51,18 +51,31 @@ def get_casas():
 def get_casa(id):
     if 'admin_id' not in session:
         return jsonify({'error': 'No autorizado'}), 401
-    
+
     casa = Casa()
     result = casa.obtener_por_id(id)
+
+    # Convertir JSON de fotos a string separado por comas
+    if result and 'fotos' in result:
+        try:
+            fotos_list = json.loads(result['fotos'])
+            result['fotos'] = ', '.join(fotos_list)
+        except (json.JSONDecodeError, TypeError):
+            result['fotos'] = ''
+
     return jsonify(result)
 
 @admin_bp.route('/api/casas', methods=['POST'])
 def crear_casa():
     if 'admin_id' not in session:
         return jsonify({'error': 'No autorizado'}), 401
-    
+
     data = request.get_json()
     casa = Casa()
+
+    # Convertir fotos de string a lista JSON
+    fotos_list = [f.strip() for f in data.get('fotos', '').split(',')] if data.get('fotos') else []
+
     casa.crear(
         data['id_locacion'],
         data['latitud'],
@@ -72,7 +85,7 @@ def crear_casa():
         data['recamaras'],
         data['baños'],
         data['estatus_venta'],
-        data.get('fotos')
+        fotos_list
     )
     return jsonify({'success': True})
 
@@ -80,9 +93,13 @@ def crear_casa():
 def actualizar_casa(id):
     if 'admin_id' not in session:
         return jsonify({'error': 'No autorizado'}), 401
-    
+
     data = request.get_json()
     casa = Casa()
+
+    # Convertir fotos de string a lista JSON
+    fotos_list = [f.strip() for f in data.get('fotos', '').split(',')] if data.get('fotos') else []
+
     casa.actualizar(
         id,
         data['id_locacion'],
@@ -93,7 +110,7 @@ def actualizar_casa(id):
         data['recamaras'],
         data['baños'],
         data['estatus_venta'],
-        data.get('fotos')
+        fotos_list
     )
     return jsonify({'success': True})
 
