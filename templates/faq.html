@@ -9,20 +9,21 @@
     <style>
         /* Contenedor del video responsivo con proporción cuadrada */
         .video-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px; /* ancho máximo */
-            aspect-ratio: 1 / 1; /* cuadrado */
-            margin: 20px auto;
-        }
+    position: relative;
+    width: 100%;
+    max-width: 800px; /* ajusta según tu diseño */
+    aspect-ratio: 16 / 9; /* ahora 16:9, como la mayoría de videos */
+    margin: 20px auto;
+}
 
-        .video-container video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* recorta lo necesario manteniendo la vista */
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* mantiene todo el video visible */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
 
         @media (max-width: 768px) {
             .video-container {
@@ -52,7 +53,7 @@
                     <div class="video-container">
                         <video controls>
                             <!-- Reemplaza "nombre_del_video.mp4" con el nombre de tu archivo de video -->
-                            <source src="{{ url_for('static', filename='videos/nombre_del_video.mp4') }}" type="video/mp4">
+                            <source src="{{ url_for('static', filename='videos/faqs.mp4') }}" type="video/mp4">
                             Tu navegador no soporta la reproducción de video.
                         </video>
                     </div>
