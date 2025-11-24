@@ -41,12 +41,13 @@
                         <div class="form-group">
                             <label>Rango de Busqueda (km)</label>
                             <select name="rango_km">
-                                <option value="1" {% if rango_km==1 %}selected{% endif %}>1 km</option>
-                                <option value="5" {% if rango_km==5 %}selected{% endif %}>5 km</option>
-                                <option value="10" {% if rango_km==10 %}selected{% endif %}>10 km</option>
-                                <option value="25" {% if rango_km==25 %}selected{% endif %}>25 km</option>
-                                <option value="50" {% if rango_km==50 %}selected{% endif %}>50 km</option>
-                                <option value="100" {% if rango_km==100 %}selected{% endif %}>100 km</option>
+                                <option value="" {% if not rango_km %}selected{% endif %}>Cualquiera</option>
+                                <option value="1" {% if rango_km == '1' or rango_km == 1.0 %}selected{% endif %}>1 km</option>
+                                <option value="5" {% if rango_km == '5' or rango_km == 5.0 %}selected{% endif %}>5 km</option>
+                                <option value="10" {% if rango_km == '10' or rango_km == 10.0 %}selected{% endif %}>10 km</option>
+                                <option value="25" {% if rango_km == '25' or rango_km == 25.0 %}selected{% endif %}>25 km</option>
+                                <option value="50" {% if rango_km == '50' or rango_km == 50.0 %}selected{% endif %}>50 km</option>
+                                <option value="100" {% if rango_km == '100' or rango_km == 100.0 %}selected{% endif %}>100 km</option>
                             </select>
                         </div>
 
@@ -81,7 +82,7 @@
                             </select>
                         </div>
 
-                        <button id="btnBuscar" class="search-btn" type="submit">Buscar</button>
+                        <button id="btnBuscar" class="search-btn" type="button">Buscar</button>
                     </form>
 
                     <!-- Resultados -->
@@ -192,5 +193,6 @@
     {{ resultados | tojson | safe }}
     </script>
     <script src="{{ url_for('static', filename='js/mapa.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/geoloc.js') }}"></script>
 </body>
 </html>
